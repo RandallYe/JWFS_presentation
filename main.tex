@@ -1,0 +1,243 @@
+%\documentclass[10pt,t]{beamer}
+%\documentclass[t,serif]{beamer}
+%\documentclass[10pt,t,handout,serif,professionalfont]{beamer}
+%\documentclass[11pt,t,serif,professionalfont,xcolor={dvipsnames}]{beamer}
+\documentclass[%
+% handout,% comment out for overlays
+    slidestop,%
+    compress,%
+    mathserif,%
+    table,%
+    usenames,%
+    aspectratio=169,
+    dvipsnames,%
+%noamsthm
+]{beamer}%
+%\documentclass[t,serif]{beamer}
+%\setbeameroption{show notes}
+%\setbeameroption{show only notes}
+
+%%%% Notes on the second screen
+%\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen}
+
+\usepackage{main}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% From RoboStar beamer template
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\mode<presentation>{
+    \usetheme[compress]{Dresden}
+    \definecolor{beamer@header}{HTML}{666666}
+    \definecolor{beamer@blendedblue}{HTML}{015580}
+    \definecolor{beamer@line}{HTML}{b5c55c}
+    \definecolor{beamer@zed}{HTML}{0172ac}
+    \definecolor{beamer@orange}{HTML}{ff4000}
+    \setbeamercolor*{palette primary}{fg=white,bg=beamer@header}
+    \setbeamercolor*{palette secondary}{fg=white,bg=beamer@line}
+
+    \setbeamercolor{frametitle}{fg=beamer@blendedblue,bg=gray!10!white}
+    \setbeamercolor{structure}{fg=beamer@header}
+    \setbeamercolor{titlelike}{parent=palette primary,bg=white,fg=beamer@blendedblue}
+    \setbeamercolor{navigation symbols}{fg=beamer@line, bg=beamer@header}
+    \expandafter\def\expandafter\insertshorttitle\expandafter{%
+        \insertshorttitle\hfill%
+        \hfill\hspace{8cm}\insertframenumber\,/\,\inserttotalframenumber}
+ % Comment the line below if you want to use the navigation symbols.
+        \beamertemplatenavigationsymbolsempty
+    }
+
+    \defbeamertemplate*{title page}{customized}[1][]
+    {
+        \centering
+        \vspace{1em}
+        {\usebeamerfont{title}\usebeamercolor[fg]{frametitle}\inserttitle}\par
+        \vspace{1em}
+        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}\par
+        \bigskip
+        {\usebeamerfont{author}\usebeamercolor{titlelike}\insertauthor}\par
+
+        \bigskip
+        \vspace{2em}
+        \includegraphics[scale=0.18]{pics/RoboStar_FC.eps}\par
+        \vspace{0.5em}
+        {\small \href{https://robostar.cs.york.ac.uk/}{robostar.cs.york.ac.uk}}\par
+        \vspace{1em}
+        {\tiny \usebeamerfont{date}\insertdate}\par
+        \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+    }
+
+%\usepackage[color]{circus}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% reduce margin
+    \setbeamersize{text margin left=0.4cm,text margin right=0.4cm} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Body 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\title[Automated Reasoning of Probabilistic Programs]{
+%	Automated Reasoning for Probabilistic Sequential Programs\\ with Theorem Proving
+%}
+%\author[K. Ye, S. Foster, J. Woodcock]{\underline{Kangfeng Ye}, Simon Foster, Jim Woodcock}
+%\institute[UoY]{\normalsize RoboStar\footnotemark[1]}
+
+%\date{November 04, 2021}
+
+%\titlegraphic{\includegraphics[align=c,width=4.2cm]{pics/UOY-Logo}\qquad\includegraphics[align=c,width=5.6cm]{pics/EPSRC_logo}}
+
+
+    \begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[Programming choices]{{\Large A tour through the programming choices: semantics and applications}}
+\subtitle{\large On the occasion of Jim Woodcock's Festschrift}
+
+
+\author[\underline{Pedro Ribeiro} et al.]
+{\normalsize \underline{Pedro Ribeiro}, \underline{Kangfeng Ye}, Frank Zeyda, Alvaro Miyazawa}
+
+%\institute[University of York]{\normalsize University of York, UK}
+
+\date{\small Sept 4, 2024}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\frame{%
+    \titlepage
+    {%\centering
+ %\medskip
+  % Here you can include the UoY logo, for example. EPS format will 
+  % typically be converted to PDF automatically if using pdflatex.
+  %
+  %\includegraphics[scale=.04]{pics/UoY-Logo.eps} \qquad
+  %\hfill
+ % \includegraphics[align=c,width=5.6cm]{pics/EPSRC_logo}
+\includegraphics[align=c,width=2.6cm]{pics/UOY-Logo}
+\hfill\hspace{4cm} \includegraphics[align=c,width=3.6cm]{pics/EPSRC_logo}
+}
+
+  %
+  % See https://www.york.ac.uk/staff/external-relations/brand/logo/
+  % for source of UoY logo.
+  % 
+  % Include other logos as appropriate.
+  %
+  %\smallskip
+  %\href{https://robostar.cs.york.ac.uk}{robostar.cs.york.ac.uk}
+
+    }%
+
+    \logo{\includegraphics[scale=0.10]{pics/RoboStar_FC.eps}\quad~~}
+
+    \setbeamerfont{footnote}{size=\tiny}
+
+    \begin{frame}[fragile]
+        \frametitle{Outline}
+        \setlength{\parskip}{-1ex} %reduce vertical space between entries
+        \begin{minipage}{\textwidth} % use minipage to reduce vertical space between entries
+            \tableofcontents[hideallsubsections]
+        \end{minipage}
+    \end{frame}
+
+% TOC
+%\AtBeginSubsection[]
+%\AtBeginSection[]
+%{
+%  \begin{frame}<beamer>
+%    \frametitle{Outline}
+%%    \tableofcontents[currentsection,currentsubsection]
+%    \tableofcontents[currentsection, hideallsubsections]
+%  \end{frame}
+%}
+
+% insert a TOC in the beginning of each section
+\AtBeginSection[]
+{
+    \begin{frame}<beamer>
+        \frametitle{Outline}
+        \setlength{\parskip}{-1ex}
+        \begin{minipage}{\textwidth} % use minipage to reduce vertical space between entries
+            \tableofcontents[
+                currentsection,
+                hideallsubsections,
+        %currentsubsection, 
+        %hideothersubsections, 
+                sectionstyle=show/shaded, % current section show and other sections shaded
+         subsectionstyle=show/shaded/hide, % current section show, other subsections in this section shaded, subsections in other sections hide
+            ] 
+        \end{minipage}
+    \end{frame}
+}
+
+% insert a TOC in the beginning of each subsection
+%    \AtBeginSubsection[]
+%    {
+%        \begin{frame}<beamer>
+%            \frametitle{Outline}
+%            \tableofcontents[
+%        %currentsection,
+%        %currentsubsection, 
+%        %hideothersubsections, 
+%                sectionstyle=show/shaded, % current section show and other sections shaded
+%                subsectionstyle=show/shaded/hide,  % current section show, other subsections in this section shaded, subsections in other sections hide
+%            ] 
+%        \end{frame}
+%    }
+
+
+\begin{frame}{Jim Woodcock}
+    \begin{itemize}
+        \item This talk is dedicated with affection to Prof. Jim Woodcook on his retirement from University of York.
+    \end{itemize}
+    \begin{block}{Frank}
+
+    \end{block}
+    \begin{block}{Alvaro}
+
+    \end{block}
+    \begin{block}{Pedro}
+
+    \end{block}
+    \begin{block}{Kangfeng (Randall)}
+
+    \end{block}
+\end{frame}
+
+\begin{frame}{Definitions of various choices}
+    \begin{itemize}
+        \item 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Definitions of various choices}
+    \begin{itemize}
+        \item 
+    \end{itemize}
+\end{frame}
+
+\section{Background and motivations}
+
+\begin{frame}[c]{ }
+    \usebeamerfont{frametitle}\usebeamercolor[fg]{frametitle}
+    \centering 
+    \Huge
+    \emph{Thank you!} \\
+    \vspace{0.5em}
+    \normalsize
+    \color{black}{https://robostar.cs.york.ac.uk/}
+\end{frame}
+
+%%%% Bibliography %%%%
+\newpage
+%\bibliographystyle{IEEEtran}
+\bibliographystyle{alpha}
+\bibliography{main} 
+\label{ch:bib} %label to refer to
+\end{document}

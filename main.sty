@@ -1,0 +1,490 @@
+\usepackage{etex} %should be the first package used. Otherwise, it may cause ``No room for a new counter'' error
+
+\RequirePackage{color}%
+
+\usepackage{amsmath}%
+\usepackage{amssymb}%
+\usepackage{bm}%
+\usepackage{stmaryrd}%
+\usepackage{graphbox}
+\usepackage[color]{czt}%
+\usepackage[color,zed]{csp}%
+% \usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm]{geometry}%
+\usepackage[utf8]{inputenc}%
+\usepackage{colornames}%
+\usepackage{courier}%
+\usepackage{crayola}%
+\usepackage{fancyvrb}%
+\usepackage{float}%
+\usepackage[T1]{fontenc}%
+\usepackage{graphicx}%
+\usepackage{graphbox}%align=
+\usepackage{harpoon}%
+\usepackage{hyperref}%
+\usepackage{listings}%
+\usepackage{lstcustom}%
+\usepackage{paralist}%
+\usepackage{pdflscape}%
+\usepackage{relsize}%
+\usepackage{stackrel}%
+\usepackage{stmaryrd}%
+\usepackage{thmtools,thm-restate}%
+\usepackage{url}%
+\usepackage[scaled]{helvet}% (added at suggestion of reviewer)
+\usepackage{ifthen}%
+\usepackage{bussproofs}
+\usepackage{xspace}
+\usepackage{latexsym}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+
+% Reset numbering for each \begin{align}
+\usepackage{etoolbox}
+\AtBeginEnvironment{align}{\setcounter{equation}{0}}
+
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\usepackage{url}
+\usepackage{lmodern}
+\usepackage{xcolor}
+
+\usepackage{mathtools} % DeclarePairedDelimiter
+\usepackage{mathrsfs} % \mathscr
+
+% color for link
+\definecolor{links}{HTML}{2A1B81}
+\hypersetup{colorlinks,linkcolor=,urlcolor=links}
+% \hypersetup{
+%     colorlinks,
+%     linkcolor={red!50!black},
+%     citecolor={blue!50!black},
+%     urlcolor={blue!80!black}
+% }
+
+\definecolor{IsaGreen}{cmyk}{1.0,0,1.0,.2}
+\definecolor{IsaOrange}{cmyk}{0,.45,.94,.15}
+\definecolor{IsaBlue}{RGB}{23,70,147}
+
+% from isabelle*.sty
+\newcommand{\isakwmaj}[1]{\textcolor{IsaBlue}{\textbf{\texttt{#1}}}}
+\newcommand{\isakwmin}[1]{\textcolor{IsaGreen}{\textbf{\texttt{#1}}}}
+\newcommand{\isacomm}[1]{\textcolor{IsaOrange}{\texttt{#1}}}
+
+\newcommand{\ckey}[1]{\hbox{\textbf{\textsf{\textsl{#1}}}}}%
+\newcommand{\healthy}[1]{\ckey{#1}}%
+\newcommand{\isamath}[1]{\emph{$#1$}}
+\newcommand{\isatext}[1]{\emph{#1}}
+\DeclareRobustCommand{\isascriptstyle}{\def\isamath##1{##1}\def\isatext##1{\mbox{\isaspacing\isastylescript##1}}}
+
+\newcommand{\isactrlbold}[1]{{\bfseries\upshape\boldmath#1}}
+\newcommand{\isasymparallel}{\isamath{\parallel}}
+\newcommand{\isactrlsup}[1]{\emph{\isascriptstyle${}\sp{#1}$}}
+\newcommand{\isactrlsub}[1]{\emph{\isascriptstyle${}\sb{#1}$}}
+
+\newcommand{\isasymSqinter}{\isamath{\bigsqcap\,}} 
+
+\newcommand{\sview}{\mathcal{V}}%
+\newcommand{\scoview}{\mathcal{C}}%
+\newcommand{\vclose}[1]{\ckey{close}_#1}%
+\newcommand{\vopen}[1]{\ckey{open}_#1}%
+\newcommand{\restrict}{\upharpoonright}
+\newcommand{\nth}{\mathop{!}}
+
+
+\newcommand{\isop}[1]{\textit{\textsf{#1}}}
+\newcommand{\isopbf}[1]{\textit{\textsf{\textbf{#1}}}}
+
+\newcommand{\hlist}{\textit{\textsf{list}}}
+\newcommand{\listlens}{\textit{\textsf{list-lens}}}
+\newcommand{\funlens}{\textit{\textsf{fun-lens}}}
+\newcommand{\dynlens}{\textit{\textsf{dyn-lens}}}
+
+\newcommand{\isalogo}{\includegraphics[width=9pt]{figures/isabelle_transparent}}
+\newcommand{\isaref}[1]{\href{#1}{\isalogo}}
+\newcommand{\isalink}[1]{\hfill \isaref{#1}}
+\newcommand{\isasymK}{\isamath{\mathcal{K}}}
+\newcommand{\isasymF}{\isamath{\mathcal{F}}}
+\newcommand{\isasymlbrakk}{\isamath{\mathopen{\lbrack\mkern-3mu\lbrack}}}
+\newcommand{\isasymrbrakk}{\isamath{\mathclose{\rbrack\mkern-3mu\rbrack}}}
+
+\definecolor{ClzColor}{cmyk}{0.50,1,0,0} 
+\newcommand{\clz}{\color{ClzColor}}%
+\newcommand{\cle}{\color{red}}%
+\newcommand{\clbe}[1]{{\color{olive} \textbf{#1}}}%
+\newcommand{\maincolor}{\color{black}}%
+\newcommand{\rcitem}{\textsf}%
+%% 
+%% \usepackage[shortlabels,inline]{enumitem}
+\setbeamertemplate{itemize subitem}[square]
+\setbeamertemplate{itemize subsubitem}[circle]
+% https://tex.stackexchange.com/questions/426581/itemize-within-itemize-and-reducing-indent-in-beamer
+\setlength{\leftmargin}{0.5cm}
+\setlength{\leftmargini}{0.5cm}
+\setlength{\leftmarginii}{0.5cm}
+\setlength{\leftmarginiii}{0.5cm}
+%% \setlist[enumerate]{wide = 0pt, leftmargin=*, labelindent=8pt}
+%% 
+\newcommand{\II}{{\hbox{\texttt{\slshape I \kern -8.5pt I}}}\hspace{-1pt}}%
+%% 
+%% \usepackage{array} % for \newcolumntype macro
+%% %\newcolumntype{C}[#1]{>{\hfil$\clz}p{#1}<{$\hfil}} % centered, in math mode, fixed width
+%% \newcolumntype{C}[1]{>{\centering\arraybackslash$\clz}p{#1}<{$}} % centered, in math mode, fixed width
+%% \newcolumntype{R}[1]{>{\raggedleft\arraybackslash$\clz}p{#1}<{$}} % right-aligned, in math mode, fixed width
+%% \newcolumntype{T}[1]{>{\raggedleft\arraybackslash$\clz}p{#1}<{$}} % right-aligned, in math mode, fixed width
+%% \newcolumntype{L}[1]{>{\raggedright\arraybackslash$\clz}p{#1}<{$}} % left-aligned, in math mode, fixed width
+%% 
+\newcommand{\pchoice}[1]{\mathop{\oplus_{#1}}}
+\newcommand{\pr}{\pchoice{r}}
+%\newcommand{\intchoice}{\sqcap}
+%\newcommand{\wpr}{\backslash\mkern-4mu\backslash}
+%% %\newcommand{\wpr}{/_w~}
+\newcommand{\wpr}{/~}
+%% 
+%% \newcommand{\fp}{\mbox{\isactrlbold f\isactrlbold p}}
+%\newcommand{\vv}{\isamath{\mathbf{v}}}
+\newcommand{\vv}{{\mathbf{v}}}
+%% \newcommand{\isasymbind}{\isamath{\mathbin{>\!\!\!>\mkern-6.7mu=}}}
+%% \newcommand{\PM}{\mbox{\isactrlbold P\isactrlbold M}}
+%% \newcommand{\DM}{\mbox{\isactrlbold D\isactrlbold M}}
+%% \newcommand{\CC}{\mbox{\isactrlbold C\isactrlbold C}}
+%% \newcommand{\parallelD}{\isasymparallel^{\theory{\tiny D}}}
+%% \newcommand{\parallelDM}[1]{\isasymparallel^{\theory{\tiny D}}_{\theory{\tiny #1}}}
+%% %\newcommand{\pcomp}{~\isamath{;\mkern-7mu_p}~}
+\newcommand{\pcomp}{\isamath{;\mkern-7mu}}
+%% \newcommand{\refines}{\sqsupseteq}
+%% \def\refinedby{%
+%%   \@ifnextchar[{\@refinedby}{\mathrel{\sqsubseteq}}}
+%% 
+\newcommand{\theory}[1]{\textit{\textbf{#1}}}%
+\newcommand{\theoryset}[1]{\llbracket \healthy{#1} \rrbracket}%
+\newcommand{\thlfp}[1]{\mu\!\!_{\hbox{\tiny \healthy{#1}}}}
+%\newcommand{\thlfp}[1]{\mu\!\!_#1}
+\newcommand{\thgfp}[1]{\nu\!\!_{\hbox{\tiny \healthy{#1}}}}
+%\newcommand{\thgfp}[1]{\nu\!\!_#1}
+\newcommand{\thtop}[1]{\top\!_{\hbox{\tiny \healthy{#1}}}}
+\newcommand{\thbot}[1]{\bot\!_{\hbox{\tiny \healthy{#1}}}}
+\newcommand{\thsup}[1]{\bigsqcup{}_{\!\theory{\tiny #1}}~}
+\newcommand{\thinf}[1]{\bigsqcap{}_{\!\theory{\tiny #1}}~}
+\newcommand{\thnsup}{\bigsqcup{}}
+\newcommand{\thninf}{\bigsqcap{}}
+%\newcommand{\tsup}{\isamath{\mathbin{\sqcup}}}
+%\newcommand{\tinf}{\isamath{\mathbin{\sqcap}}}
+\newcommand{\tsup}{\sqcup}
+\newcommand{\tinf}{\sqcap}
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% % Comment the definition below to elide the marks of changed text.
+%% %\def\CHANGES
+%% 
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% %%%%% DEFINITIONS TO MARK CHANGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+%% %\setlength{\marginparwidth}{1cm}
+%% 
+%% \hypersetup{
+%% 	colorlinks,
+%% 	linkcolor={blue!50!black},
+%% 	citecolor={blue!50!black},
+%% 	urlcolor={blue!80!black}
+%% }
+%% 
+%% \usepackage[skins]{tcolorbox}
+%% \usepackage{tocloft}
+%% \usepackage{fmtcount}
+%% \usepackage{imakeidx}
+%% \makeindex[title=Index of Changes, name=changes]
+%% 
+%% \ifdefined\CHANGES
+%% \newcommand{\linktochange}[2]{\hyperlink{#1}{#2}}
+%% 
+%% \makeatletter\newcommand{\linkdest}[1]{\raisebox{\ht\strutbox}{\hypertarget{#1}{}}}\makeatother
+%% 
+%% %\edef\test{\padzeroes[10]\decimalnum{11}}
+%% 
+%% \newlistof{changes}{s}{\listchangename}	
+%% \newcommand{\changed}[2][?]{%
+%% 	\refstepcounter{changes}%
+%% 	\linkdest{\thechanges}%
+%% 	{\color{blue}#2}\textsuperscript{#1}%
+%% 	\addcontentsline{s}{changes}{\protect\numberline{\thechanges}#1}%
+%% }%
+%% 
+%% % this is a version of the command above that creates notes at the beginning
+%% % and end of the change to properly demarcate it. This is sometimes necessary
+%% % when the changes are too large, or when two different changes are next to each other
+%% \newcommand{\Nchanged}[2][?]{%
+%% 	\todo{\scriptsize start}
+%% 	\refstepcounter{changes}%
+%% 	\linkdest{\thechanges}%
+%% 	{\color{blue}#2\todo{\scriptsize end}}\textsuperscript{#1}%
+%% 	\addcontentsline{s}{changes}{\protect\numberline{\thechanges}#1}%
+%% }%
+%% 
+%% \newtcolorbox{echanged}[1]{enhanced,title=#1, sharp corners,colback=blue!20,
+%% 	attach boxed title to top right=
+%% 	{xshift=0mm,yshift=0mm},
+%% 	boxed title style={size=small,colback=blue},
+%% 	size=minimal,
+%% 	finish={
+%% 		\refstepcounter{changes}
+%% 		\addcontentsline{s}{changes}
+%% 		{\protect\numberline{\thechanges}#1}
+%% 	}
+%% }
+%% \fi
+%% \newcommand{\notinpaper}[1]{%
+%% 	\index[changes]{Comment \textbf{C\expandafter\sortgref#1\sortgref} not reflected in the text.\removecomma|HIDE}%
+%% }
+%% 
+%% % The version below prints an index for the actual change associated with the page number.
+%% % The index is based on the order of the change.
+%% %\newcommand{\BH}[2]{\large\textbf{\hyperlink{#1}{#2\textsuperscript{#1}}}\normalsize}
+%% \newcommand{\BH}[2]{\large\textbf{\hyperlink{#1}{#2}}\normalsize}
+%% 
+%% \newrobustcmd{\removecomma}[1]{}
+%% \newcommand{\HIDE}[1]{}
+%% 
+%% \newcommand{\C}[1]{%
+%% 	\index[changes]{Comment \textbf{C\expandafter\sortgref#1\sortgref}|BH{\arabic{changes}}}{C#1}%
+%% }%
+%% 
+%% \def\sortgref#1\sortgref{%
+%% 	\ignoresort{\ifnum#1<10 00\else\ifnum #1<100 0\fi\fi#1}#1%
+%% }
+%% \protected\def\ignoresort#1{}
+%% \ifdefined\CHANGES	
+%% 
+%% \else
+%% \newcommand{\listchangename}{List of Changes}
+%% 	\newlistof{changes}{s}{\listchangename}	
+%% 	\newcommand{\changed}[2][?]{#2}
+%%   \newcommand{\Nchanged}[2][?]{#2}
+%% \newtcolorbox{echanged}[1]{size=minimal}	
+%% \fi
+%% 
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lstdefinestyle{Python}{
+    language        = Python,
+    basicstyle      = \ttfamily,
+    keywordstyle    = \color{blue},
+    keywordstyle    = [2] \color{teal}, % just to check that it works
+    stringstyle     = \color{green},
+    commentstyle    = \color{red}\ttfamily
+}
+
+%%%%%%%%%%%%%%%%%%%%% Isabelle/HOL %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Union}{\bigcup}
+\newcommand{\finite}{\textit{\textsf{finite}}}
+\newcommand{\curried}[1]{\tilde{#1}}
+\newcommand{\card}{\mathop{\textit{\textsf{card}}}}
+\newcommand{\univ}{\mathbb{U}}
+%\newcommand{\tendsto}{\parbox{1.0cm}{\rightarrowfill}\,}
+\newcommand{\tendsto}{\xrightarrow{n\rightarrow\infty}}
+
+%%%%%%%%%%%%%%%%%%%%%%%% Isabelle/UTP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% convert a UTP expression to a lambda term
+\newcommand{\usexpr}[1]{\left(#1\right)_e}
+\newcommand{\upred}{\textit{\textsf{pred}}}
+\newcommand{\uexpr}{\textit{\textsf{expr}}}
+%\newcommand{\tautology}[1]{\text{\textquoteleft$#1$\textquoteright}}
+%\newcommand{\tautology}[1]{\underbrace{#1}}
+\newcommand{\tautology}[1]{\underbracket[0.210ex]{#1}}
+\newcommand{\pfalse}{\textit{\textsf{false}}}
+\newcommand{\ptrue}{\textit{\textsf{true}}}
+\newcommand{\urel}{\textit{\textsf{urel}}}
+\newcommand{\hrel}{\textit{\textsf{hrel}}}
+\newcommand{\ur}[1]{\overline{#1}}
+\newcommand{\ru}[1]{\underline{#1}}
+\newcommand{\ufalse}{\ckey{false}}
+\newcommand{\utrue}{\ckey{true}}
+\newcommand{\des}{\textit{\textsf{des}}}
+\newcommand{\prss}{\textit{\textsf{prss}}}
+\newcommand{\reldes}{\textit{\textsf{rel\_des}}}
+\newcommand{\hreldes}{\textit{\textsf{hrel\_des}}}
+\newcommand{\relpdes}{\textit{\textsf{rel\_pdes}}}
+\newcommand{\hrelpdes}{\textit{\textsf{hrel\_pdes}}}
+\newcommand{\hrelhpdes}{\textit{\textsf{hrel\_hpdes}}}
+\newcommand{\bool}{\textit{\textsf{bool}}}
+\newcommand{\uprelift}[1]{#1^{\mbox{\!\!\fontsize{4}{4} $\blacktriangleleft$}}}
+\newcommand{\upredrop}[1]{#1_{\mbox{\!\!\fontsize{4}{4} $\blacktriangleleft$}}}
+\newcommand{\upostlift}[1]{#1^{\mbox{\!\!\fontsize{4}{4} $\blacktriangleright$}}}
+\newcommand{\smapsto}{\mapsto}
+\newcommand{\psubst}[1]{\llparenthesis #1 \rrparenthesis}
+\newcommand{\lconstr}{\hat{S}}
+\newcommand{\lens}[2]{{#1}\Longrightarrow{#2}}
+\newcommand{\lget}[1]{\mathop{get_{#1}}}
+\newcommand{\lput}[1]{\mathop{put_{#1}}}                  
+\newcommand{\lprod}{\mathop{\times_L}}                  
+\newcommand{\lfst}{\mathop{fst_L}}                  
+\newcommand{\lsnd}{\mathop{snd_L}}                  
+
+%%%%%%%%%%%%%%%%%%%%%%%% Isabelle/UTP %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% iverson bracket
+\newcommand{\libracket}{\lbrack\!\lbrack}
+\newcommand{\ribracket}{\rbrack\!\rbrack}
+% semL
+\DeclarePairedDelimiter{\lribracket}{\libracket}{\ribracket}
+\newcommand{\ibracket}[1]{\lribracket{#1}}
+\newcommand{\ibracketI}[1]{\ibracket{#1}_{\mathcal{I}}}
+
+\newcommand{\livbr}{\left\lbrack\!\!\left\lbrack}
+\newcommand{\rivbr}{\right\rbrack\!\!\right\rbrack}
+\newcommand{\ivbr}[1]{\livbr #1 \rivbr}
+
+%\newcommand{\ibracket}[1]{\llbracket #1 \rrbracket_\mathcal{I}}
+
+%\newcommand{\typecolonm}{\raise 0.66ex\hbox{\oalign{\hfil$\scriptscriptstyle%
+%                           \mathrm{o}$\hfil\cr\hfil$\scriptscriptstyle\mathrm{o}$\hfil}}}
+%\newcommand{\typecolon}{\mathop{\typecolonm}}                  
+\DeclareMathSymbol{\qm}{\mathalpha}{operators}{"3F}
+\DeclareMathAlphabet{\mathbbold}{U}{bbold}{m}{n}
+\newcommand{\cond}{\mathop{\mathbbold{\qm}}}
+\newcommand{\infsum}{\Sigma_{\infty}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% ureal %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\real}{\mathbb{R}}%
+\newcommand{\ureal}{\textit{\textsf{ureal}}}
+\newcommand{\umax}{\textit{\textsf{max}}}
+\newcommand{\umin}{\textit{\textsf{min}}}
+\newcommand{\uone}{\textit{\textsf{1}}}
+\newcommand{\uzero}{\textit{\textsf{0}}}
+\newcommand{\urealreal}{\textit{\textsf{u2r}}}
+\newcommand{\realureal}{\textit{\textsf{r2u}}}
+\newcommand{\rfnum}[1]{\dot{#1}}
+\newcommand{\rfone}{\dot{1}}
+\newcommand{\rfzero}{\dot{0}}
+\newcommand{\ufnum}[1]{\mathring{#1}}
+\newcommand{\ufone}{\mathring{1}}
+\newcommand{\ufzero}{\mathring{0}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Expressions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\rexpr}{\textit{\textsf{rexpr}}}
+\newcommand{\relexpr}{\textit{\textsf{relrexpr}}}
+\newcommand{\hrelexpr}{\textit{\textsf{hrelrexpr}}}
+\newcommand{\urexpr}{\textit{\textsf{urexpr}}}
+\newcommand{\urelexpr}{\textit{\textsf{relurexpr}}}
+\newcommand{\hurelexpr}{\textit{\textsf{hrelurexpr}}}
+\newcommand{\prfun}{\textit{\textsf{prfun}}}
+\newcommand{\prhfun}{\textit{\textsf{prhfun}}}
+\newcommand{\rvfun}{\textit{\textsf{rvfun}}}
+\newcommand{\rvhfun}{\textit{\textsf{rvhfun}}}
+\newcommand{\prrvfun}{\textit{\textsf{rvfun\_of\_prfun}}}
+\newcommand{\rvprfun}{\textit{\textsf{prfun\_of\_rvfun}}}
+\newcommand{\prrvfunsym}[1]{\overline{#1}}
+\newcommand{\rvprfunsym}[1]{\underline{#1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Distributions %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\isnonneg}{\textit{\textsf{is\_nonneg}}}
+\newcommand{\isprob}{\textit{\textsf{is\_prob}}}
+\newcommand{\isdist}{\textit{\textsf{is\_dist}}}
+\newcommand{\issubdist}{\textit{\textsf{is\_subdist}}}
+\newcommand{\isfinalprob}{\textit{\textsf{is\_final\_prob}}}
+\newcommand{\isfinaldist}{\textit{\textsf{is\_final\_dist}}}
+\newcommand{\isfinalsubdist}{\textit{\textsf{is\_final\_subdist}}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\normf}{\mathcal{N}_f}
+\newcommand{\normal}{\mathcal{N}_{\alpha}}
+\newcommand{\summable}{\textit{\textsf{summable}}}
+\newcommand{\summableonfinal}{\textit{\textsf{summable\_on\_final}}}
+\newcommand{\summableonfinals}{\textit{\textsf{summable\_on\_final2}}}
+\newcommand{\finalreachable}{\textit{\textsf{final\_reachable}}}
+\newcommand{\finalreachables}{\textit{\textsf{final\_reachable2}}}
+\newcommand{\finitefinal}{\textit{\textsf{finite\_final}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Syntax %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pskip}{\II_p}
+\newcommand{\passign}[2]{#1 :=_p #2}
+\newcommand{\liftpre}[1]{#1^{\Uparrow}}
+\newcommand{\ppifchoice}[3]{\IF\mkern-5mu_p\, #1 \THEN #2 \ELSE #3}
+%\newcommand{\ppchoice}[3]{\IF\mkern-5mu_p #1 \THEN #2 \ELSE #3}
+\newcommand{\ppchoice}[3]{#2 \oplus_{#1} #3}
+\newcommand{\ifc}{\IF\mkern-5mu_c}
+\newcommand{\pcchoice}[3]{\IF\mkern-5mu_c\, #1 \THEN #2 \ELSE #3}
+%\newcommand{\pseq}[2]{#1\mathop{\pcomp\,}#2}
+\newcommand{\ppseq}{\mathop{;\mkern-7mu\,}}
+\newcommand{\pseq}[2]{#1\mathop{;\mkern-7mu\,}#2}
+\newcommand{\pparallel}[2]{#1 \mathop{\parallel} #2}
+\newcommand{\uniformdist}[2]{\mathcal{U}\left(#1, #2\right)}
+%\newcommand{\uniformdist}[2]{#1\,\mathbb{U}\,#2}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Recursion %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\mono}{\isop{mono}}
+\newcommand{\antimono}{\isop{antimono}}
+\newcommand{\incseq}{\isop{incseq}}
+\newcommand{\decseq}{\isop{decseq}}
+\newcommand{\Inf}{\bigsqcup}
+\newcommand{\lfp}{\thlfp{p}}
+\newcommand{\gfp}{\thgfp{p}}
+%\newcommand{\lfun}{\isop{\mathcal{F}}}
+\newcommand{\lfun}{{\mathcal{F}}}
+\newcommand{\lfunbp}{\lfun_P^b}
+%\newcommand{\lfundiff}{\isop{lfundiff}}
+\newcommand{\lfundiff}{\lfun_0}
+\newcommand{\lfunp}[3]{\lfun\left(#1, #2, #3\right)}
+\newcommand{\pwhileop}{\isopbf{while}_p}
+\newcommand{\pwhile}[2]{\isopbf{while}_p\,\, #1\,\, \isopbf{do}\,\, #2\,\, \isopbf{od}}
+\newcommand{\pwhiletop}[2]{\isopbf{while}_p^{\top}\,#1\, \isopbf{do}\, #2\, \isopbf{od}}
+%\newcommand{\iter}{\isop{iter}}
+%\newcommand{\iterdiff}{\isop{iterdiff}}
+\newcommand{\iter}{\mathcal{I}}
+\newcommand{\iterdiff}{\mathcal{I}\mathcal{D}}
+\newcommand{\finstatesasc}{\mathcal{F}\mathcal{S}_{\Uparrow}}
+\newcommand{\finstatesdes}{\mathcal{F}\mathcal{S}_{\Downarrow}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Plot %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{pgfplots}
+\pgfplotsset{width=10cm,compat=1.9}
+
+% We will externalize the figures, pdflatex needs to run with an option "-shell-escape"
+% \usepgfplotslibrary{external}
+% \tikzexternalize
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% % comments in proof
+%% \newcommand{\cmt}[1]{\textnormal{\color{Maroon}\,\{\,#1\,\}}}
+%% 
+%%  \newcounter{i}
+%%  \setcounter{i}{1}
+%%  \def\mycount{\Alph{i}\ifnum\value{i}<6
+%%   \stepcounter{i}
+%%   \else
+%%   \setcounter{i}{1}
+%%   \fi\kern-1ex}
+%% 
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% % from https://tex.stackexchange.com/questions/83509/hfill-in-math-mode
+%% % \makeatletter
+%% % \newcommand{\pushright}[1]{\ifmeasuring@#1\else\omit\hfill$\displaystyle#1$\fi\ignorespaces}
+%% % \newcommand{\pushleft}[1]{\ifmeasuring@#1\else\omit$\displaystyle#1$\hfill\fi\ignorespaces}
+%% % \makeatother
+
+\makeatletter
+\pgfplotsset{
+      calculate offset/.code={
+        \pgfkeys{/pgf/fpu=true,/pgf/fpu/output format=fixed}
+        \pgfmathsetmacro\testmacro{(\pgfplotspointmeta*10^\pgfplots@data@scale@trafo@EXPONENT@y)*\pgfplots@y@veclength)}
+        \pgfkeys{/pgf/fpu=false}
+         },
+    every node near coord/.style={
+        /pgfplots/calculate offset,
+         yshift=-\testmacro,
+       },
+    name node/.style={
+    every node near coord/.append style={
+        name=#1-\coordindex
+    }}
+}    
+
+\usepackage[listings,skins,theorems,breakable,most]{tcolorbox}
+
+\usepackage{tikz} 
+% circled number
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=1pt, minimum size=0.4cm] (char) {{\footnotesize #1}};}}
