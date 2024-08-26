@@ -4,13 +4,13 @@
 %\documentclass[11pt,t,serif,professionalfont,xcolor={dvipsnames}]{beamer}
 \documentclass[%
 % handout,% comment out for overlays
-    slidestop,%
-    compress,%
-    mathserif,%
-    table,%
-    usenames,%
-    aspectratio=169,
-    dvipsnames,%
+slidestop,%
+compress,%
+mathserif,%
+table,%
+usenames,%
+aspectratio=169,
+dvipsnames,%
 %noamsthm
 ]{beamer}%
 %\documentclass[t,serif]{beamer}
@@ -43,30 +43,29 @@
     \setbeamercolor{navigation symbols}{fg=beamer@line, bg=beamer@header}
     \expandafter\def\expandafter\insertshorttitle\expandafter{%
         \insertshorttitle\hfill%
-        \hfill\hspace{8cm}\insertframenumber\,/\,\inserttotalframenumber}
- % Comment the line below if you want to use the navigation symbols.
-        \beamertemplatenavigationsymbolsempty
-    }
+    \hfill\hspace{8cm}\insertframenumber\,/\,\inserttotalframenumber}
+    % Comment the line below if you want to use the navigation symbols.
+    \beamertemplatenavigationsymbolsempty
+}
 
-    \defbeamertemplate*{title page}{customized}[1][]
-    {
-        \centering
-        \vspace{1em}
-        {\usebeamerfont{title}\usebeamercolor[fg]{frametitle}\inserttitle}\par
-        \vspace{1em}
-        {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}\par
-        \bigskip
-        {\usebeamerfont{author}\usebeamercolor{titlelike}\insertauthor}\par
-
-        \bigskip
-        \vspace{2em}
-        \includegraphics[scale=0.18]{pics/RoboStar_FC.eps}\par
-        \vspace{0.5em}
-        {\small \href{https://robostar.cs.york.ac.uk/}{robostar.cs.york.ac.uk}}\par
-        \vspace{1em}
-        {\tiny \usebeamerfont{date}\insertdate}\par
-        \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
-    }
+\defbeamertemplate*{title page}{customized}[1][]
+{
+    \centering
+    \vspace{1em}
+    {\usebeamerfont{title}\usebeamercolor[fg]{frametitle}\inserttitle}\par
+    \vspace{1em}
+    {\usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle}\par
+    \bigskip
+    {\usebeamerfont{author}\usebeamercolor{titlelike}\insertauthor}\par
+    \bigskip
+    \vspace{1em}
+    \includegraphics[scale=0.18]{pics/RoboStar_FC.eps}\par
+    \vspace{0.5em}
+    {\small \href{https://robostar.cs.york.ac.uk/}{robostar.cs.york.ac.uk}}\par
+    \vspace{1em}
+    {\tiny \usebeamerfont{date}\insertdate}\par
+    \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
+}
 
 %\usepackage[color]{circus}
 
@@ -74,7 +73,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % reduce margin
-    \setbeamersize{text margin left=0.4cm,text margin right=0.4cm} 
+\setbeamersize{text margin left=0.4cm,text margin right=0.4cm} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Body 
@@ -90,7 +89,7 @@
 %\titlegraphic{\includegraphics[align=c,width=4.2cm]{pics/UOY-Logo}\qquad\includegraphics[align=c,width=5.6cm]{pics/EPSRC_logo}}
 
 
-    \begin{document}
+\begin{document}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -112,39 +111,39 @@
 \frame{%
     \titlepage
     {%\centering
- %\medskip
-  % Here you can include the UoY logo, for example. EPS format will 
-  % typically be converted to PDF automatically if using pdflatex.
-  %
-  %\includegraphics[scale=.04]{pics/UoY-Logo.eps} \qquad
-  %\hfill
- % \includegraphics[align=c,width=5.6cm]{pics/EPSRC_logo}
-\includegraphics[align=c,width=2.6cm]{pics/UOY-Logo}
-\hfill\hspace{4cm} \includegraphics[align=c,width=3.6cm]{pics/EPSRC_logo}
-}
+        %\medskip
+        % Here you can include the UoY logo, for example. EPS format will 
+        % typically be converted to PDF automatically if using pdflatex.
+        %
+        %\includegraphics[scale=.04]{pics/UoY-Logo.eps} \qquad
+        %\hfill
+        % \includegraphics[align=c,width=5.6cm]{pics/EPSRC_logo}
+        \includegraphics[align=c,width=2.6cm]{pics/UOY-Logo}
+        \hfill\hspace{4cm} \includegraphics[align=c,width=3.6cm]{pics/EPSRC_logo}
+    }
 
-  %
-  % See https://www.york.ac.uk/staff/external-relations/brand/logo/
-  % for source of UoY logo.
-  % 
-  % Include other logos as appropriate.
-  %
-  %\smallskip
-  %\href{https://robostar.cs.york.ac.uk}{robostar.cs.york.ac.uk}
+    %
+    % See https://www.york.ac.uk/staff/external-relations/brand/logo/
+    % for source of UoY logo.
+    % 
+    % Include other logos as appropriate.
+    %
+    %\smallskip
+    %\href{https://robostar.cs.york.ac.uk}{robostar.cs.york.ac.uk}
 
-    }%
+}%
 
-    \logo{\includegraphics[scale=0.10]{pics/RoboStar_FC.eps}\quad~~}
+\logo{\includegraphics[scale=0.10]{pics/RoboStar_FC.eps}\quad~~}
 
-    \setbeamerfont{footnote}{size=\tiny}
+\setbeamerfont{footnote}{size=\tiny}
 
-    \begin{frame}[fragile]
-        \frametitle{Outline}
-        \setlength{\parskip}{-1ex} %reduce vertical space between entries
-        \begin{minipage}{\textwidth} % use minipage to reduce vertical space between entries
-            \tableofcontents[hideallsubsections]
-        \end{minipage}
-    \end{frame}
+\begin{frame}[fragile]
+    \frametitle{Outline}
+    \setlength{\parskip}{-1ex} %reduce vertical space between entries
+    \begin{minipage}{\textwidth} % use minipage to reduce vertical space between entries
+        \tableofcontents[hideallsubsections]
+    \end{minipage}
+\end{frame}
 
 % TOC
 %\AtBeginSubsection[]
@@ -165,12 +164,12 @@
         \setlength{\parskip}{-1ex}
         \begin{minipage}{\textwidth} % use minipage to reduce vertical space between entries
             \tableofcontents[
-                currentsection,
-                hideallsubsections,
-        %currentsubsection, 
-        %hideothersubsections, 
-                sectionstyle=show/shaded, % current section show and other sections shaded
-         subsectionstyle=show/shaded/hide, % current section show, other subsections in this section shaded, subsections in other sections hide
+            currentsection,
+            hideallsubsections,
+            %currentsubsection, 
+            %hideothersubsections, 
+            sectionstyle=show/shaded, % current section show and other sections shaded
+            subsectionstyle=show/shaded/hide, % current section show, other subsections in this section shaded, subsections in other sections hide
             ] 
         \end{minipage}
     \end{frame}
@@ -199,19 +198,50 @@
 
     % We've all had the pleasure to study and work with Jim for many years.
     % This paper is inspired by Jim's efforts to unify different programming and modelling paradigms.
-    
-    \begin{block}{Frank}
 
-    \end{block}
-    \begin{block}{Alvaro}
+    \only<2>{
+        \begin{block}{Frank}
+            \begin{itemize}
+                \item First met Jim at ZB 2002
+                \item Helped to organise the first  Unifying Theories of Programming (UTP) Symposium in 2006
+                \item Joined Jim and Ana's team at York in 2007 after his PhD
+                \item Now an independent researcher, living in Mexico 
+            \end{itemize}
+        \end{block}
+    }
 
-    \end{block}
-    \begin{block}{Pedro}
+    \only<3>{
+        \begin{block}{Alvaro}
+            \begin{itemize}
+                \item First heard Jim's work "Using Z: : Specification, Refinement, and Proof" during his undergraduate degree, which inspired his interest in formal methods
+                \item Started his PhD study in Jim and Ana's group at York in 2008
+                \item Continue to work in the Circus and RoboStar groups
+                \item A lecturer in CS
+            \end{itemize}
+        \end{block}
+    }
 
-    \end{block}
-    \begin{block}{Kangfeng (Randall)}
+    \only<4>{
+        \begin{block}{Pedro}
+            \begin{itemize}
+                \item First heard about UTP as an MEng student at York when attending Jim's lectures in 2010, which had a profound impact on his career
+                \item Started his PhD study in Angelic processes in 2011, supervised by Prof. Ana Cavalcanti
+                \item Continue to work in the Circus and RoboStar groups
+                \item A lecturer in CS
+            \end{itemize}
+        \end{block}
+    }
 
-    \end{block}
+    \only<5>{
+        \begin{block}{Kangfeng (Randall)}
+            \begin{itemize}
+                \item First met Jim at York in 2012 for his PhD study, supervised by Jim
+                \item First heard and learned Z, CSP, UTP etc. from Jim
+                \item Worked with Jim in one EU project and four EPSRC projects in probabilistic semantics for RoboChart
+                \item A research associate at York, working on formal verificaiton of security protocols  
+            \end{itemize}
+        \end{block}
+    }
 \end{frame}
 
 
@@ -223,10 +253,15 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Definitions of various choices}
-    \begin{itemize}
-        \item 
-    \end{itemize}
+\begin{frame}{Informal definitions of various choices}
+    \begin{block}{Nondeterministic choice}
+    \end{block}
+    \begin{block}{Angelic choice}
+    \end{block}
+    \begin{block}{Preferential choice}
+    \end{block}
+    \begin{block}{Probabilisti choice}
+    \end{block}
 \end{frame}
 
 \section{Nondeterministic choice}
@@ -238,7 +273,7 @@
 \end{frame}
 
 \begin{frame}{Application}
-% maybe discuss the role of non-determinism in RoboChart and the need for the cover wfc and the consequence of removing it.
+    % maybe discuss the role of non-determinism in RoboChart and the need for the cover wfc and the consequence of removing it.
     \begin{itemize}
         \item 
     \end{itemize}
