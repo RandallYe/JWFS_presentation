@@ -22,6 +22,8 @@ dvipsnames,%
 %\setbeameroption{show notes on second screen}
 
 \usepackage{main}
+\usepackage{fzeyda}
+%\usepackage{rye}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % From RoboStar beamer template
@@ -267,13 +269,17 @@ dvipsnames,%
 \end{frame}
 
 \begin{frame}{Informal definitions of various choices}
-    \begin{block}{Nondeterministic choice}
+    \begin{block}{(Demonic) Nondeterministic choice}
+        $P \intchoice Q$: choice is resolved in favor of the (worst) undesired result, such as non-termination
     \end{block}
     \begin{block}{Angelic choice}
+        $P \sqcup Q$: choice is resolved in favor of the (best) desired result, such as termination
     \end{block}
     \begin{block}{Preferential choice}
+        $S \pref T$: behaves like $S$ if $S$ and its continuation is feasible (non-miracle); otherwise, like $T$
     \end{block}
     \begin{block}{Probabilisti choice}
+        $P \pchoice{r} Q$: resolved based on the probability $r$ to choose $P$ and $1-r$ to choice $Q$
     \end{block}
 \end{frame}
 
