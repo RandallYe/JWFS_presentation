@@ -320,46 +320,55 @@ dvipsnames,%
 
 \section{Probabilistic choice}
 \begin{frame}{Probabilistic choice}
-    \only<1->{
-%        \begin{center}
-%            \includegraphics[scale=0.40]{pics/choices-probabilistic.pdf}
-%        \end{center}
-%    }
-%    \only<2>{
+    \only<1>{
+        %        \begin{center}
+        %            \includegraphics[scale=0.40]{pics/choices-probabilistic.pdf}
+        %        \end{center}
+        %    }
+        %        \only<1>{
         \begin{columns}
             \begin{column}{0.60\textwidth}
                 \vspace*{-2em}
                 \begin{center}
-                    \includegraphics[scale=0.40]{pics/choices-probabilistic.pdf}
+                    {\includegraphics[scale=0.40]{pics/choices-probabilistic.pdf}}
+                    %\only<3>{\includegraphics[scale=0.40]{pics/ProbURel.png}}
                 \end{center}
             \end{column}
             \begin{column}{0.40\textwidth}
                 %\vspace*{-2em}
                 \only<1>{
-                Imperative programming
-                \begin{itemize}
-                    \item Kozen's seminal work\footnotemark[1]
-                    \item He et al.'s "weakest completion" - probabilistic designs\footnotemark[2]
-                    \item Hehner’s Probabilistic Predicative Programming (PPP)\footnotemark[3], and ProbURel
-                    \item McIver and Morgan's expectation transformer semantics\footnotemark[4] 
-                \end{itemize}
-                }
-                \only<2>{
-                Probabilistic process algebras
-                \begin{itemize}
-                    \item Hansson’s alternating model; 
-                    \item Segala and Lynch’s probabilistic automata;
-                    \item Van Glabbeek et al.’s reactive, generative, and stratified models; 
-                    \item probabilistic extensions based on CSP
-                    \item PCSP$\#$
-                \end{itemize}
+                    Imperative probabilistic %programming
+                    \begin{itemize}
+                        \item Kozen's seminal work~\cite{Kozen1981}%: no nondeterministic choice
+                        \item McIver and Morgan's expectation transformer semantics~\cite{McIver2005bn}%: nondeterministic choice is the smaller pre-expectation (demonic)  
+                        \item He et al.'s "weakest completion"~\cite{He2004} - probabilistic designs~\cite{Woodcock2019,Ye2021}
+                            \note[item]<2>{Jim et al. formalised the semantics and Ye et al. mechanised in Isabelle/UTP}
+                        \item Hehner’s Probabilistic Predicative Programming (PPP)~\cite{Hehner2004} and ProbURel~\cite{Ye2023}
+                            \note[item]<2>{Ye et al. formalised the semantics using UTP for relations and mechanised in Isabelle/UTP}
+                    \end{itemize}
                 }
             \end{column}
         \end{columns}
-        {\footnotetext[1]{Kozen, D.: Semantics of probabilistic programs. Journal of Computer and System
-Sciences 22(3), 328–350 (1981). }}
+        %{\footnotetext[1]{Kozen, D.: Semantics of probabilistic programs. Journal of Computer and System Sciences 22(3), 328–350 (1981). }}
+    }
+    \only<2>{
+        Probabilistic process algebras
+        \begin{itemize}
+            \item Hansson’s alternating model~\cite{Hansson1991}
+            \item Segala and Lynch’s probabilistic automata~\cite{Segala1995}
+            \item Van Glabbeek et al.’s reactive, generative, and stratified models~\cite{Vanglabbeek1995}
+            \item Probabilistic extensions based on CSP~\cite{Morgan1996a,Morgan2005,Nunez1995,Gomez1997,Kwiatkowska1998,Sun2010,Georgievska2012} 
+            \item Probabilistic semantics of RoboChart in PRISM~\cite{Ye2022} 
+            \note[itemize]<2->{Resolve nondeterministic choice from a state, then probabilistic choice to multiple target states}
+        \end{itemize}
     }
 \end{frame}
+
+% \begin{frame}[fragile,c]
+%     \frametitle{Probabilistic designs}
+%     \centering
+%     \only<1>{\includegraphics[scale=0.30]{pics/prob_designs.png}}
+% \end{frame}
 
 \begin{frame}[fragile]
     \frametitle{Application of probabilistic choice: simple symmetric random walk}
@@ -401,12 +410,12 @@ Sciences 22(3), 328–350 (1981). }}
         \end{center}
 
         \only<2>{\Large
-%\begin{columns}
-%        \begin{column}{0.25\textwidth}
-%            \centering
-%            Probability theory 
-%        \end{column}
-%        \begin{column}{0.75\textwidth}
+            %\begin{columns}
+            %        \begin{column}{0.25\textwidth}
+            %            \centering
+            %            Probability theory 
+            %        \end{column}
+            %        \begin{column}{0.75\textwidth}
             Probability theory
             \begin{itemize}
                 \item $\sigma(m)$: $m$ copies of one-step random walk $\sigma(1)$ 
@@ -415,40 +424,41 @@ Sciences 22(3), 328–350 (1981). }}
                 \item Condition the first step and solve an equation to get $G_{\sigma(1)}(z)$
                 \item Taylor expansion to get the distribution $\varphi(n)$
             \end{itemize}
-%        \end{column}
-%    \end{columns}
+            %        \end{column}
+            %    \end{columns}
         }
 
         \only<3>{\Large
-\begin{columns}
-        \begin{column}{0.30\textwidth}
-            \centering
-            ProbURel
-        \end{column}
-        \begin{column}{0.70\textwidth}
-            \vspace*{-2em}
-            \begin{align*}
-                P \defs \quad & x := m; t:=0; \\
-                              &\text{while}(x > 0) \{\\
-                              &\quad {\clz x := x - 1 \pchoice{p} x := x + 1 ; }\\
-                              &\quad t:=t+1\\
-                              &\} 
-            \end{align*}
-        \end{column}
-    \end{columns}
+            \begin{columns}
+                \begin{column}{0.20\textwidth}
+                    \centering
+                    ProbURel
+                \end{column}
+                \begin{column}{0.80\textwidth}
+                    \vspace*{-2em}
+                    \begin{align*}
+                        P \defs \quad & x := m; t:=0; \\
+                                      &\text{while}(x > 0) \{\\
+                                      &\quad {\clz x := x - 1 \pchoice{p} x := x + 1 ; }\\
+                                      &\quad t:=t+1\\
+                                      &\} 
+                    \end{align*}
+                \end{column}
+            \end{columns}
         }
 
         \only<4>{\large
-            \vspace*{-1em}
+            %\vspace*{-1em}
             ProbURel: semantics for the while loop
             \begin{align*}
-                Ht \defs &\ibracket{\lnot x> 0}*\ibracket{x'=x}*\ibracket{t'=t} + \\
+                Ht \defs~ &\ibracket{\lnot x> 0}*\ibracket{x'=x}*\ibracket{t'=t} + \\
                          &\ibracket{x > 0}*\ibracket{x'=0} * \\
                          &\left(
                              \begin{array}[]{l}
                                  \ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\mu(x-1, t'-t-1)*p +\\ 
                                  \ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\mu(x+1, t'-t-1)*q
-                         \end{array}\right)
+                         \end{array}\right) \\
+                \mu(m, n) & = p*\mu(m-1,n-1) + q*\mu(m+1,n-1) \\
             \end{align*}
         }
     }
