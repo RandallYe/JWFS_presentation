@@ -43,12 +43,18 @@ dvipsnames,%
     \setbeamercolor{structure}{fg=beamer@header}
     \setbeamercolor{titlelike}{parent=palette primary,bg=white,fg=beamer@blendedblue}
     \setbeamercolor{navigation symbols}{fg=beamer@line, bg=beamer@header}
-    \expandafter\def\expandafter\insertshorttitle\expandafter{%
-        \insertshorttitle\hfill%
-    \hfill\hspace{8cm}\insertframenumber\,/\,\inserttotalframenumber}
+    \setbeamertemplate{page number in head/foot}[totalframenumber]
+    % \expandafter\def\expandafter\insertshorttitle\expandafter{%
+    %     \insertshorttitle\hfill%
+    % \hfill\hspace{8cm}\insertframenumber\,/\,\inserttotalframenumber}
     % Comment the line below if you want to use the navigation symbols.
     \beamertemplatenavigationsymbolsempty
 }
+
+\settowidth{\leftmargini}{\usebeamertemplate{itemize item}}
+\addtolength{\leftmargini}{\labelsep}
+\setbeamerfont{caption}{size=\scriptsize}
+\setbeamertemplate{footline}[frame number]
 
 \defbeamertemplate*{title page}{customized}[1][]
 {
@@ -250,21 +256,20 @@ dvipsnames,%
 \begin{frame}[c]{Motivations and Overview}
     % more compact and high-level diagram of Fig. 1
     % Applications: FMI, RoboChart
-    \begin{columns}
-        \begin{column}{0.60\textwidth}
-            \vspace*{-2em}
-            \begin{center}
-                \includegraphics[scale=0.60]{pics/overall.pdf}
-            \end{center}
-        \end{column}
-        \begin{column}{0.40\textwidth}
-            \begin{itemize}
+    \begin{columns}%
+        \begin{column}[t]{0.55\textwidth}%
+            \begin{itemize}%
                 \item Review related work in authors' research interests%: semantics for nondeterministic choice, angelic choice, preferential choice, and probabilistic choice in programming
                 \item In the context of Jim's research domains%: Z, CSP, Circus, and UTP 
                 \item Applications: FMI and RoboChart
                 \item Sequential and concurrent programming
-            \end{itemize}
-        \end{column}
+            \end{itemize}%
+        \end{column}%
+        \begin{column}[t]{0.45\textwidth}%
+            \begin{center}%
+                \includegraphics[width=\textwidth]{pics/overall.pdf}%
+            \end{center}%
+        \end{column}%
     \end{columns}
 \end{frame}
 
@@ -278,7 +283,7 @@ dvipsnames,%
     \begin{block}{Preferential choice}
         $S \pref T$: behaves like $S$ if $S$ and its continuation is feasible (non-miracle); otherwise, like $T$
     \end{block}
-    \begin{block}{Probabilisti choice}
+    \begin{block}{Probabilistic choice}
         $P \pchoice{r} Q$: resolved based on the probability $r$ to choose $P$ and $1-r$ to choice $Q$
     \end{block}
 \end{frame}
@@ -286,22 +291,47 @@ dvipsnames,%
 \section{Nondeterministic choice}
 % One slide for each choice and each for application
 \begin{frame}{Nondeterministic choice}
+    \begin{quote}
+    ``A system which permits user programs to become non-deterministic
+    presents dreadful problems to the maintenance engineer: it is not a 
+    `facility' to be lightly granted.'' \cite[p.12]{EWD:EWD418}, (Hoare quoted by Dijkstra.)%(EWD418, p. 12)
+    \end{quote}
     \begin{itemize}
-        \item 
+        \item Originally not \emph{demonic}\footnote{Dijkstra's allegory of a ``daemon [that] decides quite arbitrarily.''}, as in Rabin and Scott's automata and Turing machines.
+        \item McCarthy's $amb$iguity operator.
+        \item Dijkstra would embrace it in his GCL after overcoming ``considerable mental resistance'':
+        \begin{itemize}
+            \item $wp(x:=1 \sqcap x:=2, \{ x = 1 \lor x = 2 \})$, but $wp(..., \{x=1\})$ and $wp(..., \{x=2\})$ not feasible.
+            \item By considering conjunctive, rather than arbitrary, predicate transformers, cannot entertain a program that is guaranteed to establish either outcome in isolation.
+        \end{itemize}
+        \item Contrast with Floyd's choice points, that take the \emph{angelic} view.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Application}
     % maybe discuss the role of non-determinism in RoboChart and the need for the cover wfc and the consequence of removing it.
     \begin{itemize}
-        \item 
+        \item Nondeterminism naturally surfaces in theories for refinement, for example, in CSP:
+        \begin{displaymath}%
+        \begin{aligned}[t]%
+            P &= (a \then e?x \then Skip \extchoice a \then e!0 \then Skip) \lpar \{e\} \rpar e!1 \then Skip 
+            \\
+            Q &= (e?x \then Skip \extchoice e!0 \then Skip) \lpar \{e\} \rpar e!1 \then Skip
+        \end{aligned}%
+        \end{displaymath}%
+        \item Notably: $P \sqcap Q \sqsubseteq P$ and $\textbf{div} \sqcap P = \textbf{div}$.
+        \item Processes can be recast as reactive designs in the relational UTP of Hoare and He.
     \end{itemize}
 \end{frame}
 
 \section{Angelic choice}
 \begin{frame}{Angelic choice}
     \begin{itemize}
-        \item 
+        \item Earliest use of the term \emph{angelic} seems due to Broy and Wirsing, who studied four types of nondeterminism via algebraic data types.
+        \item Hesselink considered extension of GCL with \emph{angelic} choice.
+        \item Dijkstra allowed arbitrary predicate transformers for reasoning about UNITY.
+        \item Back and von Wright studied sublattices where choice is \emph{angelic} or \emph{demonic}.
+        \item As observed by Rewitzky and Brink and others, relations can only capture one type of nondeterminism. Instead, can consider multirelations.
     \end{itemize}
 \end{frame}
 
@@ -332,18 +362,9 @@ dvipsnames,%
         %        \end{center}
         %    }
         %        \only<1>{
-        \begin{columns}
-            \begin{column}{0.60\textwidth}
-                \vspace*{-2em}
-                \begin{center}
-                    {\includegraphics[scale=0.40]{pics/choices-probabilistic.pdf}}
-                    %\only<3>{\includegraphics[scale=0.40]{pics/ProbURel.png}}
-                \end{center}
-            \end{column}
-            \begin{column}{0.40\textwidth}
-                %\vspace*{-2em}
-                \only<1>{
-                    Imperative probabilistic %programming
+        \begin{columns}%
+            \begin{column}[t]{0.5\textwidth}%
+                \only<1>{Imperative probabilistic %programming
                     \begin{itemize}
                         \item Kozen's seminal work~\cite{Kozen1981}%: no nondeterministic choice
                         \item McIver and Morgan's expectation transformer semantics~\cite{McIver2005bn}%: nondeterministic choice is the smaller pre-expectation (demonic)  
@@ -353,6 +374,13 @@ dvipsnames,%
                             \note[item]<2>{Ye et al. formalised the semantics using UTP for relations and mechanised in Isabelle/UTP}
                     \end{itemize}
                 }
+            \end{column}
+            \begin{column}[t]{0.5\textwidth}
+                \vspace*{-2em}
+                \begin{center}
+                    {\includegraphics[width=\linewidth]{pics/choices-probabilistic.pdf}}
+                    %\only<3>{\includegraphics[scale=0.40]{pics/ProbURel.png}}
+                \end{center}
             \end{column}
         \end{columns}
         %{\footnotetext[1]{Kozen, D.: Semantics of probabilistic programs. Journal of Computer and System Sciences 22(3), 328–350 (1981). }}
@@ -415,7 +443,7 @@ dvipsnames,%
             \end{tikzpicture}
         \end{center}
 
-        \only<2>{\Large
+        \only<2>{%\Large
             %\begin{columns}
             %        \begin{column}{0.25\textwidth}
             %            \centering
@@ -434,7 +462,7 @@ dvipsnames,%
             %    \end{columns}
         }
 
-        \only<3>{\Large
+        \only<3>{%\Large
             \begin{columns}
                 \begin{column}{0.20\textwidth}
                     \centering
@@ -483,7 +511,7 @@ dvipsnames,%
     \emph{Thank you!} \\
     \vspace{0.5em}
     \normalsize
-    \color{black}{https://robostar.cs.york.ac.uk/}
+    \color{black}{\href{https://robostar.cs.york.ac.uk/}{robostar.cs.york.ac.uk}}
 \end{frame}
 
 %%%% Bibliography %%%%
