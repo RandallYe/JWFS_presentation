@@ -342,15 +342,47 @@ dvipsnames,%
 \end{frame}
 
 \section{Preferential choice}
-\begin{frame}{Preferential choice}
+\begin{frame}{Preferential choice $S \pref T$}
     \begin{itemize}
-        \item 
+        \only<1->{\item Not commutative and non-monotonic in its first operand,}
+        \only<2->{\item Cannot be expressed in wp predicate transformers,}
+        \only<3->{\item New prospective values semantics,}
+        \only<4->{\item Preference in wp: three-valued G\"{o}del logic~\cite{GoedelLogic} (false, true, supertrue), mechanised in Isabelle/HOL (wpe semantics of GCL)} 
+        \only<5->{\item Preference in UTP: future work} 
     \end{itemize}
+%
+    \only<1>{
+    \begin{block}{Non-monotonic}
+        \begin{align*}
+            & (\alert{x := 1} \pref x := 2) \seqc (x = 1 \precond \gclskip) \textcolor{gray}{\qquad= (x := 2)}\\
+            & \not \refinedby \\
+            & (\alert{\magic} \pref x := 2) \seqc (x = 1 \precond \gclskip) \textcolor{gray}{\qquad= abort}
+        \end{align*}
+    \end{block}
+    }
+%
+    \only<2>{
+    \begin{block}{wp}
+        The closest one in wp is Nelson's biased choices~\cite{Nelson1989}: $ S \biasedchoice T$, but no continuation in biased choice. \par 
+        Expect $\alert{S \choice T} \; \; \refby \; \; S \pref T \; \; \refby \; \; \alert{S \biasedchoice T}$ in wp, but $S \pref T$ cannot be in wp
+    \end{block}
+    }
+
+    \only<3>{
+    \begin{block}{Prospective values (pv) semantics}
+       Based on expression transformers~\cite{bGSL2023}: $S \diamond E$, prospective values of expression $E$ after the executation of $S$\par
+       Defined on Hehner's bunch theory.
+
+       \[ (S \pref T) \diamond E \deq (S \diamond E) \bunchcomma (S \diamond E) = \nullbunch \bguards T \diamond E \]
+    \end{block}
+    }
 \end{frame}
 
-\begin{frame}{Application/go back to talk about FMU}
+\begin{frame}{Application of preferential choice}
     \begin{itemize}
-        \item 
+        \item Semantics of backtracking search algorithms for formal verification: ordered choices
+        \item Co-Simulation master algorithm (MA) for FMI: 
+            \[ (stepsize := 4 \pref stepsize := 2 \pref stepsize := 1) \seqc (FMU_1 \parc FMU_2 \parc \cdots) \]
     \end{itemize}
 \end{frame}
 
