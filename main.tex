@@ -371,8 +371,8 @@ dvipsnames,%
     \begin{itemize}
         \only<1->{\item Not commutative and non-monotonic in its first operand,}
         \only<2->{\item Cannot be expressed in wp predicate transformers,}
-        \only<3->{\item New prospective values semantics,}
-        \only<4->{\item Preference in wp: three-valued G\"{o}del logic~\cite{GoedelLogic} (false, true, supertrue), mechanised in Isabelle/HOL (wpe semantics of GCL)} 
+        \only<3->{\item New prospective values (PV) semantics,} 
+        \only<4->{\item Preference in wp: three-valued G\"{o}del logic~\cite{GoedelLogic} (false, true, supertrue), mechanised in Isabelle/HOL (wpe semantics of GCL), including angelic choice} 
         \only<5->{\item Preference in UTP: future work} 
     \end{itemize}
 %
@@ -388,17 +388,22 @@ dvipsnames,%
 %
     \only<2>{
     \begin{block}{wp}
-        The closest one in wp is Nelson's biased choices~\cite{Nelson1989}: $ S \biasedchoice T$, but no continuation in biased choice. \par 
-        Expect $\alert{S \choice T} \; \; \refby \; \; S \pref T \; \; \refby \; \; \alert{S \biasedchoice T}$ in wp, but $S \pref T$ cannot be in wp
+        The closest one in wp is Nelson's biased choices~\cite{Nelson1989}: 
+        \[ S \biasedchoice T \deq S \choice \lnot \fis(S) \guards T \]
+        but no continuation in biased choice. Expect 
+          \[\alert{S \choice T} \; \; \refby \; \; S \pref T \; \; \refby \; \; \alert{S \biasedchoice T}\] 
+        in wp, but $S \pref T$ cannot be expressed in wp
     \end{block}
     }
 
     \only<3>{
-    \begin{block}{Prospective values (pv) semantics}
-       Based on expression transformers~\cite{bGSL2023}: $S \diamond E$, prospective values of expression $E$ after the executation of $S$\par
-       Defined on Hehner's bunch theory.
-
+    \begin{block}{PV semantics}
+        Based on expression transformers~\cite{bGSL2023}: $\alert{S \diamond E}$ (prospective values of expression $E$ after the execution of $S$)\par
+       Defined on Hehner's bunch theory:
        \[ (S \pref T) \diamond E \deq (S \diamond E) \bunchcomma (S \diamond E) = \nullbunch \bguards T \diamond E \]
+       With nondeterministic choice and probabilistic choice, but without angelic choice
+
+        \review{Why bunch theory? why no angelic choice?}
     \end{block}
     }
 \end{frame}
