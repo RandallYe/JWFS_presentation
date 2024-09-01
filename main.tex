@@ -96,6 +96,7 @@ dvipsnames,%
 
 %\titlegraphic{\includegraphics[align=c,width=4.2cm]{pics/UOY-Logo}\qquad\includegraphics[align=c,width=5.6cm]{pics/EPSRC_logo}}
 
+\def\Circus{{\sf\slshape Circus}}
 
 \begin{document}
 
@@ -296,6 +297,7 @@ dvipsnames,%
     presents dreadful problems to the maintenance engineer: it is not a 
     `facility' to be lightly granted.'' \cite[p.12]{EWD:EWD418}, (Hoare quoted by Dijkstra.)%(EWD418, p. 12)
     \end{quote}
+    \pause
     \begin{itemize}
         \item Originally not \emph{demonic}\footnote{Dijkstra's allegory of a ``daemon [that] decides quite arbitrarily.''}, as in Rabin and Scott's automata and Turing machines.
         \item McCarthy's $amb$iguity operator.
@@ -308,36 +310,59 @@ dvipsnames,%
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Application}
+\begin{frame}{Application of nondeterministic choice}
     % maybe discuss the role of non-determinism in RoboChart and the need for the cover wfc and the consequence of removing it.
     \begin{itemize}
         \item Nondeterminism naturally surfaces in theories for refinement, for example, in CSP:
         \begin{displaymath}%
         \begin{aligned}[t]%
-            P &= (a \then e?x \then Skip \extchoice a \then e!0 \then Skip) \lpar \{e\} \rpar e!1 \then Skip 
-            \\
-            Q &= (e?x \then Skip \extchoice e!0 \then Skip) \lpar \{e\} \rpar e!1 \then Skip
+            P_0 &= (e?x \then Skip \extchoice e!0 \then Skip) \lpar \{e\} \rpar e!1 \then Skip = e!1 \then Skip\\
+            P_1 &= (a \then e?x \then Skip \extchoice a \then e!0 \then Skip) \lpar \{e\} \rpar e!1 \then Skip
         \end{aligned}%
-        \end{displaymath}%
-        \item Notably: $P \sqcap Q \sqsubseteq P$ and $\textbf{div} \sqcap P = \textbf{div}$.
-        \item Processes can be recast as reactive designs in the relational UTP of Hoare and He.
+        \end{displaymath}\vspace{-2ex}%
+        \pause \item Notable laws of programming: 
+        \begin{itemize}
+            \item $P \sqcap Q \sqsubseteq P$
+            \item $P \sqsubseteq Q \iff P = P \sqcap Q$
+            \item $\bot \sqcap P = \bot$
+        \end{itemize}
+        \item CSP processes can be recast as reactive designs in the relational UTP of Hoare and He~\cite{Hoare1998}, where nondeterministic choice is the greatest lower bound of the lattice.
     \end{itemize}
 \end{frame}
 
 \section{Angelic choice}
 \begin{frame}{Angelic choice}
     \begin{itemize}
-        \item Earliest use of the term \emph{angelic} seems due to Broy and Wirsing, who studied four types of nondeterminism via algebraic data types.
+        \item Earliest use of the term \emph{angelic} seems due to Broy and Wirsing~\cite{BroyW81}, who studied four types of nondeterminism via algebraic data types.
         \item Hesselink considered extension of GCL with \emph{angelic} choice.
         \item Dijkstra allowed arbitrary predicate transformers for reasoning about UNITY.
         \item Back and von Wright studied sublattices where choice is \emph{angelic} or \emph{demonic}.
-        \item As observed by Rewitzky and Brink and others, relations can only capture one type of nondeterminism. Instead, can consider multirelations.
+        \item As observed by Rewitzky and Brink and others, relations can only capture one type of nondeterminism. Instead, can consider multirelations, i.e. $S \rel \power S$.
+        %\item UTP relations, designs, isomorphic to conjunctive monotonic predicate transformers.
+        \item Ribeiro and Cavalcanti~\cite{RibeiroC19} encoded binary multirelations in the UTP via non-homogeneous reactive designs to cater for angelic nondeterminism in CSP, where:
+        \begin{itemize}
+            \item $a \then Skip \sqcup b \then \bot = a \then Skip \sqcup b \then Choice$
+            \item $a \then Skip \sqcup b \then \bot = a \then Skip$ (when preservation of trace history is relaxed)
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
-\begin{frame}{FMU/RoboChart}
+\begin{frame}{Application of angelic choice}
     \begin{itemize}
-        \item 
+        \item Several applications in the literature, mainly in sequential programming: data refinement, proof tactics, constraint and logic programming, modelling games, conformance relations.
+        \item Co-simulation master algorithm in FMI: 
+        \begin{itemize}
+            \item FMUs may refuse to step their simulation by a given step size.
+            \item Master algorithm can backtrack the simulation by restoring FMU state and trying again.
+            \item Goal is to step through the simulation by the largest step accepted by all FMUs.
+            \item Paper sketches a \Circus~specification using \emph{angelic} and \emph{demonic} choices.
+        \end{itemize}
+        \item RoboChart:
+        \begin{itemize}
+            \item The guards on transitions out of a junction must form a cover.
+            \item Such well-formedness condition may be inconvenient.
+            \item Alternative could consider angelic choice over transitions out of a state. If a junction is reached where no guard is true backtracking would enable an alternative path to be taken.
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
