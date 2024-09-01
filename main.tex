@@ -146,60 +146,6 @@
 
 \setbeamerfont{footnote}{size=\tiny}
 
-\begin{frame}[fragile]
-    \frametitle{Outline}
-    \setlength{\parskip}{-1ex} %reduce vertical space between entries
-    \begin{minipage}{\textwidth} % use minipage to reduce vertical space between entries
-        \tableofcontents[hideallsubsections]
-    \end{minipage}
-\end{frame}
-
-% TOC
-%\AtBeginSubsection[]
-%\AtBeginSection[]
-%{
-%  \begin{frame}<beamer>
-%    \frametitle{Outline}
-%%    \tableofcontents[currentsection,currentsubsection]
-%    \tableofcontents[currentsection, hideallsubsections]
-%  \end{frame}
-%}
-
-% insert a TOC in the beginning of each section
-\AtBeginSection[]
-{
-    \begin{frame}<beamer>
-        \frametitle{Outline}
-        \setlength{\parskip}{-1ex}
-        \begin{minipage}{\textwidth} % use minipage to reduce vertical space between entries
-            \tableofcontents[
-                currentsection,
-                hideallsubsections,
-            %currentsubsection, 
-            %hideothersubsections, 
-                sectionstyle=show/shaded, % current section show and other sections shaded
-                subsectionstyle=show/shaded/hide, % current section show, other subsections in this section shaded, subsections in other sections hide
-            ] 
-        \end{minipage}
-    \end{frame}
-}
-
-% insert a TOC in the beginning of each subsection
-%    \AtBeginSubsection[]
-%    {
-%        \begin{frame}<beamer>
-%            \frametitle{Outline}
-%            \tableofcontents[
-%        %currentsection,
-%        %currentsubsection, 
-%        %hideothersubsections, 
-%                sectionstyle=show/shaded, % current section show and other sections shaded
-%                subsectionstyle=show/shaded/hide,  % current section show, other subsections in this section shaded, subsections in other sections hide
-%            ] 
-%        \end{frame}
-%    }
-
-
 \begin{frame}{Jim Woodcock}
     \begin{itemize}
         \item This talk is dedicated with affection to Prof. Jim Woodcook on his retirement from University of York.
@@ -254,7 +200,61 @@
 \end{frame}
 
 
-\begin{frame}[c]{Motivations and Overview}
+\begin{frame}[fragile]
+    \frametitle{Outline}
+    \setlength{\parskip}{-1ex} %reduce vertical space between entries
+    \begin{minipage}{\textwidth} % use minipage to reduce vertical space between entries
+        \tableofcontents[hideallsubsections]
+    \end{minipage}
+\end{frame}
+
+% TOC
+%\AtBeginSubsection[]
+%\AtBeginSection[]
+%{
+%  \begin{frame}<beamer>
+%    \frametitle{Outline}
+%%    \tableofcontents[currentsection,currentsubsection]
+%    \tableofcontents[currentsection, hideallsubsections]
+%  \end{frame}
+%}
+
+% insert a TOC in the beginning of each section
+% \AtBeginSection[]
+% {
+%     \begin{frame}<beamer>
+%         \frametitle{Outline}
+%         \setlength{\parskip}{-1ex}
+%         \begin{minipage}{\textwidth} % use minipage to reduce vertical space between entries
+%             \tableofcontents[
+%                 currentsection,
+%                 hideallsubsections,
+%             %currentsubsection, 
+%             %hideothersubsections, 
+%                 sectionstyle=show/shaded, % current section show and other sections shaded
+%                 subsectionstyle=show/shaded/hide, % current section show, other subsections in this section shaded, subsections in other sections hide
+%             ] 
+%         \end{minipage}
+%     \end{frame}
+% }
+
+% insert a TOC in the beginning of each subsection
+%    \AtBeginSubsection[]
+%    {
+%        \begin{frame}<beamer>
+%            \frametitle{Outline}
+%            \tableofcontents[
+%        %currentsection,
+%        %currentsubsection, 
+%        %hideothersubsections, 
+%                sectionstyle=show/shaded, % current section show and other sections shaded
+%                subsectionstyle=show/shaded/hide,  % current section show, other subsections in this section shaded, subsections in other sections hide
+%            ] 
+%        \end{frame}
+%    }
+
+\section{Motivations and overview}
+\begin{frame}{Motivations and overview}
     % more compact and high-level diagram of Fig. 1
     % Applications: FMI, RoboChart
     \begin{columns}%
@@ -715,7 +715,8 @@
 %     }
 % \end{frame}
 
-\begin{frame}{Conclusion}
+\section{Conclusions}
+\begin{frame}{Conclusions}
     \begin{itemize}
         \item 
     \end{itemize}
