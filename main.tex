@@ -4,13 +4,13 @@
 %\documentclass[11pt,t,serif,professionalfont,xcolor={dvipsnames}]{beamer}
 \documentclass[%
 % handout,% comment out for overlays
-slidestop,%
-compress,%
-mathserif,%
-table,%
-usenames,%
-aspectratio=169,
-dvipsnames,%
+    slidestop,%
+    compress,%
+    mathserif,%
+    table,%
+    usenames,%
+    aspectratio=169,
+    dvipsnames,%
 %noamsthm
 ]{beamer}%
 %\documentclass[t,serif]{beamer}
@@ -173,12 +173,12 @@ dvipsnames,%
         \setlength{\parskip}{-1ex}
         \begin{minipage}{\textwidth} % use minipage to reduce vertical space between entries
             \tableofcontents[
-            currentsection,
-            hideallsubsections,
+                currentsection,
+                hideallsubsections,
             %currentsubsection, 
             %hideothersubsections, 
-            sectionstyle=show/shaded, % current section show and other sections shaded
-            subsectionstyle=show/shaded/hide, % current section show, other subsections in this section shaded, subsections in other sections hide
+                sectionstyle=show/shaded, % current section show and other sections shaded
+                subsectionstyle=show/shaded/hide, % current section show, other subsections in this section shaded, subsections in other sections hide
             ] 
         \end{minipage}
     \end{frame}
@@ -293,19 +293,19 @@ dvipsnames,%
 % One slide for each choice and each for application
 \begin{frame}{Nondeterministic choice}
     \begin{quote}
-    ``A system which permits user programs to become non-deterministic
-    presents dreadful problems to the maintenance engineer: it is not a 
-    `facility' to be lightly granted.'' \cite[p.12]{EWD:EWD418}, (Hoare quoted by Dijkstra.)%(EWD418, p. 12)
+        ``A system which permits user programs to become non-deterministic
+        presents dreadful problems to the maintenance engineer: it is not a 
+        `facility' to be lightly granted.'' \cite[p.12]{EWD:EWD418}, (Hoare quoted by Dijkstra.)%(EWD418, p. 12)
     \end{quote}
     \pause
     \begin{itemize}
         \item Originally not \emph{demonic}\footnote{Dijkstra's allegory of a ``daemon [that] decides quite arbitrarily.''}, as in Rabin and Scott's automata and Turing machines.
         \item McCarthy's $amb$iguity operator.
         \item Dijkstra would embrace it in his GCL after overcoming ``considerable mental resistance'':
-        \begin{itemize}
-            \item $wp(x:=1 \sqcap x:=2, \{ x = 1 \lor x = 2 \})$, but $wp(..., \{x=1\})$ and $wp(..., \{x=2\})$ not feasible.
-            \item By considering conjunctive, rather than arbitrary, predicate transformers, cannot entertain a program that is guaranteed to establish either outcome in isolation.
-        \end{itemize}
+            \begin{itemize}
+                \item $wp(x:=1 \sqcap x:=2, \{ x = 1 \lor x = 2 \})$, but $wp(..., \{x=1\})$ and $wp(..., \{x=2\})$ not feasible.
+                \item By considering conjunctive, rather than arbitrary, predicate transformers, cannot entertain a program that is guaranteed to establish either outcome in isolation.
+            \end{itemize}
         \item Contrast with Floyd's choice points, that take the \emph{angelic} view.
     \end{itemize}
 \end{frame}
@@ -314,18 +314,18 @@ dvipsnames,%
     % maybe discuss the role of non-determinism in RoboChart and the need for the cover wfc and the consequence of removing it.
     \begin{itemize}
         \item Nondeterminism naturally surfaces in theories for refinement, for example, in CSP:
-        \begin{displaymath}%
-        \begin{aligned}[t]%
-            P_0 &= (e?x \then Skip \extchoice e!0 \then Skip) \lpar \{e\} \rpar e!1 \then Skip = e!1 \then Skip\\
-            P_1 &= (a \then e?x \then Skip \extchoice a \then e!0 \then Skip) \lpar \{e\} \rpar e!1 \then Skip
-        \end{aligned}%
-        \end{displaymath}\vspace{-2ex}%
+            \begin{displaymath}%
+                \begin{aligned}[t]%
+                    P_0 &= (e?x \then Skip \extchoice e!0 \then Skip) \lpar \{e\} \rpar e!1 \then Skip = e!1 \then Skip\\
+                    P_1 &= (a \then e?x \then Skip \extchoice a \then e!0 \then Skip) \lpar \{e\} \rpar e!1 \then Skip
+                \end{aligned}%
+            \end{displaymath}\vspace{-2ex}%
         \pause \item Notable laws of programming: 
-        \begin{itemize}
-            \item $P \sqcap Q \sqsubseteq P$
-            \item $P \sqsubseteq Q \iff P = P \sqcap Q$
-            \item $\bot \sqcap P = \bot$
-        \end{itemize}
+            \begin{itemize}
+                \item $P \sqcap Q \sqsubseteq P$
+                \item $P \sqsubseteq Q \iff P = P \sqcap Q$
+                \item $\bot \sqcap P = \bot$
+            \end{itemize}
         \item CSP processes can be recast as reactive designs in the relational UTP of Hoare and He~\cite{Hoare1998}, where nondeterministic choice is the greatest lower bound of the lattice.
     \end{itemize}
 \end{frame}
@@ -340,10 +340,10 @@ dvipsnames,%
         \item As observed by Rewitzky and Brink and others, relations can only capture one type of nondeterminism. Instead, can consider multirelations, i.e. $S \rel \power S$.
         %\item UTP relations, designs, isomorphic to conjunctive monotonic predicate transformers.
         \item Ribeiro and Cavalcanti~\cite{RibeiroC19} encoded binary multirelations in the UTP via non-homogeneous reactive designs to cater for angelic nondeterminism in CSP, where:
-        \begin{itemize}
-            \item $a \then Skip \sqcup b \then \bot = a \then Skip \sqcup b \then Choice$
-            \item $a \then Skip \sqcup b \then \bot = a \then Skip$ (when preservation of trace history is relaxed)
-        \end{itemize}
+            \begin{itemize}
+                \item $a \then Skip \sqcup b \then \bot = a \then Skip \sqcup b \then Choice$
+                \item $a \then Skip \sqcup b \then \bot = a \then Skip$ (when preservation of trace history is relaxed)
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -351,18 +351,18 @@ dvipsnames,%
     \begin{itemize}
         \item Several applications in the literature, mainly in sequential programming: data refinement, proof tactics, constraint and logic programming, modelling games, conformance relations.
         \item Co-simulation master algorithm in FMI: 
-        \begin{itemize}
-            \item FMUs may refuse to step their simulation by a given step size.
-            \item Master algorithm can backtrack the simulation by restoring FMU state and trying again.
-            \item Goal is to step through the simulation by the largest step accepted by all FMUs.
-            \item Paper sketches a \Circus~specification using \emph{angelic} and \emph{demonic} choices.
-        \end{itemize}
+            \begin{itemize}
+                \item FMUs may refuse to step their simulation by a given step size.
+                \item Master algorithm can backtrack the simulation by restoring FMU state and trying again.
+                \item Goal is to step through the simulation by the largest step accepted by all FMUs.
+                \item Paper sketches a \Circus~specification using \emph{angelic} and \emph{demonic} choices.
+            \end{itemize}
         \item RoboChart:
-        \begin{itemize}
-            \item The guards on transitions out of a junction must form a cover.
-            \item Such well-formedness condition may be inconvenient.
-            \item Alternative could consider angelic choice over transitions out of a state. If a junction is reached where no guard is true backtracking would enable an alternative path to be taken.
-        \end{itemize}
+            \begin{itemize}
+                \item The guards on transitions out of a junction must form a cover.
+                \item Such well-formedness condition may be inconvenient.
+                \item Alternative could consider angelic choice over transitions out of a state. If a junction is reached where no guard is true backtracking would enable an alternative path to be taken.
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
@@ -377,34 +377,34 @@ dvipsnames,%
     \end{itemize}
 %
     \only<1>{
-    \begin{block}{Non-monotonic}
-        \begin{align*}
-            & (\alert{x := 1} \pref x := 2) \seqc (x = 1 \precond \gclskip) \textcolor{gray}{\qquad= (x := 2)}\\
-            & \not \refinedby \\
-            & (\alert{\magic} \pref x := 2) \seqc (x = 1 \precond \gclskip) \textcolor{gray}{\qquad= abort}
-        \end{align*}
-    \end{block}
+        \begin{block}{Non-monotonic}
+            \begin{align*}
+                & (\alert{x := 1} \pref x := 2) \seqc (x = 1 \precond \gclskip) \textcolor{gray}{\qquad= (x := 2)}\\
+                & \not \refinedby \\
+                & (\alert{\magic} \pref x := 2) \seqc (x = 1 \precond \gclskip) \textcolor{gray}{\qquad= abort}
+            \end{align*}
+        \end{block}
     }
 %
     \only<2>{
-    \begin{block}{wp}
-        The closest one in wp is Nelson's biased choices~\cite{Nelson1989}: 
-        \[ S \biasedchoice T \deq S \choice \lnot \fis(S) \guards T \]
-        but no continuation in biased choice. Expect 
-          \[\alert{S \choice T} \; \; \refby \; \; S \pref T \; \; \refby \; \; \alert{S \biasedchoice T}\] 
-        in wp, but $S \pref T$ cannot be expressed in wp
-    \end{block}
+        \begin{block}{wp}
+            The closest one in wp is Nelson's biased choices~\cite{Nelson1989}: 
+            \[ S \biasedchoice T \deq S \choice \lnot \fis(S) \guards T \]
+            but no continuation in biased choice. Expect 
+            \[\alert{S \choice T} \; \; \refby \; \; S \pref T \; \; \refby \; \; \alert{S \biasedchoice T}\] 
+            in wp, but $S \pref T$ cannot be expressed in wp
+        \end{block}
     }
 
     \only<3>{
-    \begin{block}{PV semantics}
-        Based on expression transformers~\cite{bGSL2023}: $\alert{S \diamond E}$ (prospective values of expression $E$ after the execution of $S$)\par
-       Defined on Hehner's bunch theory:
-       \[ (S \pref T) \diamond E \deq (S \diamond E) \bunchcomma (S \diamond E) = \nullbunch \bguards T \diamond E \]
-       With nondeterministic choice and probabilistic choice, but without angelic choice
+        \begin{block}{PV semantics}
+            Based on expression transformers~\cite{bGSL2023}: $\alert{S \diamond E}$ (prospective values of expression $E$ after the execution of $S$)\par
+            Defined on Hehner's bunch theory:
+            \[ (S \pref T) \diamond E \deq (S \diamond E) \bunchcomma (S \diamond E) = \nullbunch \bguards T \diamond E \]
+            With nondeterministic choice and probabilistic choice, but without angelic choice
 
-        \review{Why bunch theory? why no angelic choice?}
-    \end{block}
+            \review{Why bunch theory? why no angelic choice?}
+        \end{block}
     }
 \end{frame}
 
@@ -417,61 +417,70 @@ dvipsnames,%
 \end{frame}
 
 \section{Probabilistic choice}
-\begin{frame}{Probabilistic choice}
-    \only<1>{
-        %        \begin{center}
-        %            \includegraphics[scale=0.40]{pics/choices-probabilistic.pdf}
-        %        \end{center}
-        %    }
-        %        \only<1>{
-        \begin{columns}%
-            \begin{column}[t]{0.5\textwidth}%
-                \only<1>{Imperative probabilistic %programming
-                    \begin{itemize}
-                        \item Kozen's seminal work~\cite{Kozen1981}%: no nondeterministic choice
-                        \item McIver and Morgan's expectation transformer semantics~\cite{McIver2005bn}%: nondeterministic choice is the smaller pre-expectation (demonic)  
-                        \item He et al.'s "weakest completion"~\cite{He2004} - probabilistic designs~\cite{Woodcock2019,Ye2021}
-                            \note[item]<2>{Jim et al. formalised the semantics and Ye et al. mechanised in Isabelle/UTP}
-                        \item Hehner’s Probabilistic Predicative Programming (PPP)~\cite{Hehner2004} and ProbURel~\cite{Ye2023}
-                            \note[item]<2>{Ye et al. formalised the semantics using UTP for relations and mechanised in Isabelle/UTP}
-                    \end{itemize} 
-                }
-            \end{column}
-            \begin{column}[t]{0.5\textwidth}
-                \vspace*{-2em}
-                \begin{center}
-                    {\includegraphics[width=\linewidth]{pics/choices-probabilistic.pdf}}
-                    %\only<3>{\includegraphics[scale=0.40]{pics/ProbURel.png}}
-                \end{center}
-            \end{column}
-        \end{columns}
-        \bigskip The support of nondeterministic choice and its interaction with probabilistic choice
-        %{\footnotetext[1]{Kozen, D.: Semantics of probabilistic programs. Journal of Computer and System Sciences 22(3), 328–350 (1981). }}
-    }
-    \only<2>{
-        Probabilistic process algebras
+\begin{frame}{Probabilistic choice $P \pchoice{r} Q$}
+    Imperative sequential programming
+    \begin{itemize}
+        \only<1->{\item Kozen's seminal work~\cite{Kozen1981}: no nondeterministic choice,}
+        \only<2->{\item McIver and Morgan's expectation transformer semantics~\cite{McIver2005bn}\only<2>{: nondeterministic choice is the smaller pre-expectation (demonic),}}
+        \only<3->{\item He et al.'s "weakest completion"~\cite{He2004} - probabilistic designs,} 
+        \only<4->{\item Hehner’s Probabilistic Predicative Programming (PPP)~\cite{Hehner2004} and ProbURel~\cite{Ye2023}} 
+    \end{itemize}
+
+    \only<5->{
+        Concurrent programming (probabilistic process algebras)
         \begin{itemize}
-            \item Hansson’s alternating model~\cite{Hansson1991}
-            \item Segala and Lynch’s probabilistic automata~\cite{Segala1995}
-            \item Van Glabbeek et al.’s reactive, generative, and stratified models~\cite{Vanglabbeek1995}
-            \item Probabilistic extensions based on CSP~\cite{Morgan1996a,Morgan2005,Nunez1995,Gomez1997,Kwiatkowska1998,Sun2010,Georgievska2012} 
-            \item Probabilistic semantics of RoboChart in PRISM~\cite{Ye2022} 
-            \note[itemize]<2->{Resolve nondeterministic choice from a state, then probabilistic choice to multiple target states}
-        \end{itemize} \bigskip
-        The support of nondeterministic choice and its interaction with probabilistic choice
+            \only<5->{\item Hansson’s alternating model~\cite{Hansson1991}, Segala and Lynch’s probabilistic automata~\cite{Segala1995}, Van Glabbeek et al.’s reactive, generative, and stratified models~\cite{Vanglabbeek1995}, CSP extensions~\cite{Morgan1996a,Morgan2005,Nunez1995,Gomez1997,Kwiatkowska1998,Sun2010,Georgievska2012}} 
+            \only<6->{\item Probabilistic semantics of RoboChart in PRISM~\cite{Ye2022}} 
+        \end{itemize}
+    }
+%
+    \only<1>{
+    }
+%
+    \only<2>{
+    }
+
+    \only<3>{
+        \begin{block}{Probabilistic designs}
+            \begin{itemize}
+                \item Weakest prespecification~\cite{Hoare1987}
+                \item UTP relations with a variable $prob$
+                \item Nondeterministic choice and probabilistic choice: refinement
+                \item Woodcock et al.~\cite{Woodcock2019} formalised its semantics, and Ye et al.~\cite{Ye2021} mechanised it in Isabelle/UTP,
+                \item Probabilistic semantics for RoboChart
+            \end{itemize}
+        \end{block}
+    }
+
+    \only<4>{
+    %\begin{block}{Probabilistic Unifying Relations (ProbURel)}
+        \centering
+        \includegraphics[scale=0.18]{pics/ProbURel.png}
+    %\end{block}
     }
 \end{frame}
 
-% \begin{frame}[fragile,c]
-%     \frametitle{Probabilistic designs}
-%     \centering
-%     \only<1>{\includegraphics[scale=0.30]{pics/prob_designs.png}}
-% \end{frame}
-
 \begin{frame}[fragile]
-    \frametitle{Application of probabilistic choice: simple symmetric random walk}
-    \begin{center}
-        \only<1->{
+    \frametitle{Application of probabilistic choice}
+    \only<1>{
+        Model epistemic and aleatoric uncertainty and theorem proving
+
+        \begin{center}
+            $\begin{aligned}
+                & CovidTest ::= Pos | Neg \\ 
+                & \isakwmaj{alphabet}\ cdstate = c::\bool \quad ct::CovidTest\\
+                &Init \defs \left(\ppchoice{p_1}{c := True}{c := False}\right) \\
+                &TestAction \defs \pcchoice{c}
+                {(\ppchoice{p_2}{\passign{ct}{Pos}}{\passign{ct}{Neg}})}
+                {(\ppchoice{p_3}{\passign{ct}{Pos}}{\passign{ct}{Neg}})} \\
+                & FirstTestPos \defs \pparallel{\left(\pseq{Init}{TestAction}\right)}{\ibracket{ct' = Pos}} \\
+                &SecondTestPos \defs \pparallel{\left(\pseq{FirstTestPos}{TestAction}\right)}{\ibracket{ct' = Pos}}
+            \end{aligned}$
+        \end{center}
+    }
+    \only<2->{
+        Simple random walk
+        \begin{center}
             \begin{tikzpicture}[scale=1.2,every node/.style={scale=1.2}]
 
                 \def \n {6}
@@ -495,11 +504,11 @@ dvipsnames,%
                 \foreach \x/\y/\p\prd/\prm in \plusmacro
                 {
                     \path[->] (N\x) edge [bend left] node [above] %{\tiny \{$\frac{\pld}{\plm}$\}:x+1}
-                        {\tiny $\q$}
-                        (N\y);
+                    {\tiny $\q$}
+                    (N\y);
                     \path[->] (N\y) edge [bend left] node [below] %{\tiny \{$\frac{\prd}{\prm}$\}:x-1}
-                        {\tiny $\p$}
-                        (N\x);
+                    {\tiny $\p$}
+                    (N\x);
                 }
 
                 \path[->] (N1) edge node [below] {\tiny $\p$} (N0);
@@ -507,24 +516,24 @@ dvipsnames,%
             \end{tikzpicture}
         \end{center}
 
-        \only<2>{%\Large
-            %\begin{columns}
-            %        \begin{column}{0.25\textwidth}
-            %            \centering
-            %            Probability theory 
-            %        \end{column}
-            %        \begin{column}{0.75\textwidth}
-            Probability theory
-            \begin{itemize}
-                \item $\sigma(m)$: $m$ copies of one-step random walk $\sigma(1)$ 
-                \item $G_{\sigma(m)}(z)=G_{\sum_{i=0}^{m} \sigma(1)}(z)=\left(G_{\sigma(1)}(z)\right)^m= 
-                    \left(\sum_{n=0}^{\infty} \varphi(n) z^n\right)^m$
-                \item Condition the first step and solve an equation to get $G_{\sigma(1)}(z)$
-                \item Taylor expansion to get the distribution $\varphi(n)$
-            \end{itemize}
-            %        \end{column}
-            %    \end{columns}
-        }
+        % \only<3>{%\Large
+        %     %\begin{columns}
+        %     %        \begin{column}{0.25\textwidth}
+        %     %            \centering
+        %     %            Probability theory 
+        %     %        \end{column}
+        %     %        \begin{column}{0.75\textwidth}
+        %     Probability theory
+        %     \begin{itemize}
+        %         \item $\sigma(m)$: $m$ copies of one-step random walk $\sigma(1)$ 
+        %         \item $G_{\sigma(m)}(z)=G_{\sum_{i=0}^{m} \sigma(1)}(z)=\left(G_{\sigma(1)}(z)\right)^m= 
+        %             \left(\sum_{n=0}^{\infty} \varphi(n) z^n\right)^m$
+        %         \item Condition the first step and solve an equation to get $G_{\sigma(1)}(z)$
+        %         \item Taylor expansion to get the distribution $\varphi(n)$
+        %     \end{itemize}
+        %     %        \end{column}
+        %     %    \end{columns}
+        % }
 
         \only<3>{%\Large
             \begin{columns}
@@ -536,10 +545,10 @@ dvipsnames,%
                     \vspace*{-2em}
                     \begin{align*}
                         P \defs \quad & x := m; t:=0; \\
-                                      &\text{while}(x > 0) \{\\
-                                      &\quad {\clz x := x - 1 \pchoice{p} x := x + 1 ; }\\
-                                      &\quad t:=t+1\\
-                                      &\} 
+                        &\text{while}(x > 0) \{\\
+                            &\quad {\clz x := x - 1 \pchoice{p} x := x + 1 ; }\\
+                            &\quad t:=t+1\\
+                        &\} 
                     \end{align*}
                 \end{column}
             \end{columns}
@@ -550,17 +559,161 @@ dvipsnames,%
             ProbURel: semantics for the while loop
             \begin{align*}
                 Ht \defs~ &\ibracket{\lnot x> 0}*\ibracket{x'=x}*\ibracket{t'=t} + \\
-                         &\ibracket{x > 0}*\ibracket{x'=0} * \\
-                         &\left(
-                             \begin{array}[]{l}
-                                 \ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\mu(x-1, t'-t-1)*p +\\ 
-                                 \ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\mu(x+1, t'-t-1)*q
-                         \end{array}\right) \\
-                \mu(m, n) & = p*\mu(m-1,n-1) + q*\mu(m+1,n-1) \\
+                &\ibracket{x > 0}*\ibracket{x'=0} * \\
+                &\left(
+                \begin{array}[]{l}
+                    \ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\mu(x-1, t'-t-1)*p +\\ 
+                    \ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\mu(x+1, t'-t-1)*q
+                \end{array}\right) \\
+                \mu(m, n&) = p*\mu(m-1,n-1) + q*\mu(m+1,n-1) \\
             \end{align*}
         }
     }
 \end{frame}
+% \begin{frame}{Probabilistic choice}
+%     \only<1>{
+%         %        \begin{center}
+%         %            \includegraphics[scale=0.40]{pics/choices-probabilistic.pdf}
+%         %        \end{center}
+%         %    }
+%         %        \only<1>{
+%         \begin{columns}%
+%             \begin{column}[t]{0.5\textwidth}%
+%                 \only<1>{Imperative probabilistic %programming
+%                     \begin{itemize}
+%                         \item Kozen's seminal work~\cite{Kozen1981}%: no nondeterministic choice
+%                         \item McIver and Morgan's expectation transformer semantics~\cite{McIver2005bn}%: nondeterministic choice is the smaller pre-expectation (demonic)  
+%                         \item He et al.'s "weakest completion"~\cite{He2004} - probabilistic designs~\cite{Woodcock2019,Ye2021}
+%                             \note[item]<2>{Jim et al. formalised the semantics and Ye et al. mechanised in Isabelle/UTP}
+%                         \item Hehner’s Probabilistic Predicative Programming (PPP)~\cite{Hehner2004} and ProbURel~\cite{Ye2023}
+%                             \note[item]<2>{Ye et al. formalised the semantics using UTP for relations and mechanised in Isabelle/UTP}
+%                     \end{itemize} 
+%                 }
+%             \end{column}
+%             \begin{column}[t]{0.5\textwidth}
+%                 \vspace*{-2em}
+%                 \begin{center}
+%                     {\includegraphics[width=\linewidth]{pics/choices-probabilistic.pdf}}
+%                     %\only<3>{\includegraphics[scale=0.40]{pics/ProbURel.png}}
+%                 \end{center}
+%             \end{column}
+%         \end{columns}
+%         \bigskip The support of nondeterministic choice and its interaction with probabilistic choice
+%         %{\footnotetext[1]{Kozen, D.: Semantics of probabilistic programs. Journal of Computer and System Sciences 22(3), 328–350 (1981). }}
+%     }
+%     \only<2>{
+%         Probabilistic process algebras
+%         \begin{itemize}
+%             \item Hansson’s alternating model~\cite{Hansson1991}
+%             \item Segala and Lynch’s probabilistic automata~\cite{Segala1995}
+%             \item Van Glabbeek et al.’s reactive, generative, and stratified models~\cite{Vanglabbeek1995}
+%             \item Probabilistic extensions based on CSP~\cite{Morgan1996a,Morgan2005,Nunez1995,Gomez1997,Kwiatkowska1998,Sun2010,Georgievska2012} 
+%             \item Probabilistic semantics of RoboChart in PRISM~\cite{Ye2022} 
+%             \note[itemize]<2->{Resolve nondeterministic choice from a state, then probabilistic choice to multiple target states}
+%         \end{itemize} \bigskip
+%         The support of nondeterministic choice and its interaction with probabilistic choice
+%     }
+% \end{frame}
+% 
+% % \begin{frame}[fragile,c]
+% %     \frametitle{Probabilistic designs}
+% %     \centering
+% %     \only<1>{\includegraphics[scale=0.30]{pics/prob_designs.png}}
+% % \end{frame}
+% 
+% \begin{frame}[fragile]
+%     \frametitle{Application of probabilistic choice: simple symmetric random walk}
+%     \begin{center}
+%         \only<1->{
+%             \begin{tikzpicture}[scale=1.2,every node/.style={scale=1.2}]
+% 
+%                 \def \n {6}
+%                 \def \margin {8} % margin in angles, depends on the radius
+%                 \def \scale {1.5}
+%                 \def \p {p}
+%                 \def \q {q}
+% 
+%                 \foreach \s in {0,...,\n}
+%                 {
+%                     \node[draw, circle, double, fill=red!20] at (\s*\scale,0) (N\s) {{\tiny x=\s}};
+%                 }
+% 
+%                 \node[draw, circle, double, fill=green!10] at (4*\scale,0) (N4) {{\tiny x=4}};
+%                 \node[draw, circle, double, fill=blue!10] at (0,0) (N0) {{\tiny x=0}};
+%                 \node[] at ({(\n+0.5)*\scale}, 0) {\dots};
+%                 %\node[] at ({(0-0.5)*\scale}, 0) {\dots};
+% 
+%                 \newcommand{\plusmacro}{%0/1/0/1/1/3, 
+%                 1/2/p/1/2, 2/3/p/1/2, 3/4/p/1/2, 4/5/p/1/2, 5/6/p/1/2}
+%                 \foreach \x/\y/\p\prd/\prm in \plusmacro
+%                 {
+%                     \path[->] (N\x) edge [bend left] node [above] %{\tiny \{$\frac{\pld}{\plm}$\}:x+1}
+%                         {\tiny $\q$}
+%                         (N\y);
+%                     \path[->] (N\y) edge [bend left] node [below] %{\tiny \{$\frac{\prd}{\prm}$\}:x-1}
+%                         {\tiny $\p$}
+%                         (N\x);
+%                 }
+% 
+%                 \path[->] (N1) edge node [below] {\tiny $\p$} (N0);
+% 
+%             \end{tikzpicture}
+%         \end{center}
+% 
+%         \only<2>{%\Large
+%             %\begin{columns}
+%             %        \begin{column}{0.25\textwidth}
+%             %            \centering
+%             %            Probability theory 
+%             %        \end{column}
+%             %        \begin{column}{0.75\textwidth}
+%             Probability theory
+%             \begin{itemize}
+%                 \item $\sigma(m)$: $m$ copies of one-step random walk $\sigma(1)$ 
+%                 \item $G_{\sigma(m)}(z)=G_{\sum_{i=0}^{m} \sigma(1)}(z)=\left(G_{\sigma(1)}(z)\right)^m= 
+%                     \left(\sum_{n=0}^{\infty} \varphi(n) z^n\right)^m$
+%                 \item Condition the first step and solve an equation to get $G_{\sigma(1)}(z)$
+%                 \item Taylor expansion to get the distribution $\varphi(n)$
+%             \end{itemize}
+%             %        \end{column}
+%             %    \end{columns}
+%         }
+% 
+%         \only<3>{%\Large
+%             \begin{columns}
+%                 \begin{column}{0.20\textwidth}
+%                     \centering
+%                     ProbURel
+%                 \end{column}
+%                 \begin{column}{0.80\textwidth}
+%                     \vspace*{-2em}
+%                     \begin{align*}
+%                         P \defs \quad & x := m; t:=0; \\
+%                                       &\text{while}(x > 0) \{\\
+%                                       &\quad {\clz x := x - 1 \pchoice{p} x := x + 1 ; }\\
+%                                       &\quad t:=t+1\\
+%                                       &\} 
+%                     \end{align*}
+%                 \end{column}
+%             \end{columns}
+%         }
+% 
+%         \only<4>{\large
+%             %\vspace*{-1em}
+%             ProbURel: semantics for the while loop
+%             \begin{align*}
+%                 Ht \defs~ &\ibracket{\lnot x> 0}*\ibracket{x'=x}*\ibracket{t'=t} + \\
+%                          &\ibracket{x > 0}*\ibracket{x'=0} * \\
+%                          &\left(
+%                              \begin{array}[]{l}
+%                                  \ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\mu(x-1, t'-t-1)*p +\\ 
+%                                  \ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\mu(x+1, t'-t-1)*q
+%                          \end{array}\right) \\
+%                 \mu(m, n) & = p*\mu(m-1,n-1) + q*\mu(m+1,n-1) \\
+%             \end{align*}
+%         }
+%     }
+% \end{frame}
 
 \begin{frame}{Conclusion}
     \begin{itemize}
