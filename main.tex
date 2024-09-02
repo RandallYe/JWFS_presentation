@@ -75,6 +75,24 @@
     \usebeamercolor[fg]{titlegraphic}\inserttitlegraphic
 }
 
+\setbeamertemplate{headline}
+ {%
+   %\begin{beamercolorbox}[colsep=1.5pt]{upper separation line head}
+   %\end{beamercolorbox}
+   \begin{beamercolorbox}[ht=5.5ex]{section in head/foot}
+     \vskip1pt\insertnavigation{\paperwidth}\vskip2pt
+   \end{beamercolorbox}%
+ % \ifbeamer@theme@subsection%
+     \begin{beamercolorbox}[colsep=1.5pt]{middle separation line head}
+     \end{beamercolorbox}
+     \begin{beamercolorbox}[ht=0ex,dp=1.125ex,%
+       leftskip=.3cm,rightskip=.3cm plus1fil]{subsection in head/foot}
+       \usebeamerfont{subsection in head/foot}\insertsubsectionhead
+     \end{beamercolorbox}%
+ %  \fi%
+   \begin{beamercolorbox}[colsep=1.5pt]{lower separation line head}
+   \end{beamercolorbox}
+}
 %\usepackage[color]{circus}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -142,7 +160,7 @@
 
 }%
 
-\logo{\includegraphics[scale=0.10]{pics/RoboStar_FC.eps}\quad~~}
+\logo{\includegraphics[scale=0.10]{pics/RoboStar_FC.eps}\quad}
 
 \setbeamerfont{footnote}{size=\tiny}
 
@@ -154,49 +172,58 @@
     % We've all had the pleasure to study and work with Jim for many years.
     % This paper is inspired by Jim's efforts to unify different programming and modelling paradigms.
 
-    \only<2>{
-        \begin{block}{Frank}
-            \begin{itemize}
-                \item First met Jim at ZB 2002
-                \item Helped to organise the first  Unifying Theories of Programming (UTP) Symposium in 2006
-                \item Joined Jim and Ana's team at York in 2007 after his PhD
-                \item Now an independent researcher, living in Mexico 
-            \end{itemize}
-        \end{block}
-    }
+    \pause \begin{block}{How the authors met Jim}
+    \begin{itemize}
+        \pause \item Pedro: First heard about the UTP from Jim in the Summer of 2010 while an MEng student at York.
+        \pause \item Kangfeng (Randall): Started his PhD at York in 2012 under Jim's supervision, heard and learned Z, CSP, UTP, ... and worked with Jim on a EU project and 4 EPSRC projects.
+        \pause \item Frank: First met Jim at ZB in 2002 and helped to run the first UTP symposium in 2006.
+        \pause \item Alvaro: First heard Jim's work on "Using Z" during his undergraduate degree, which inspired his interest in formal methods.
+    \end{itemize}
+    \end{block}
 
-    \only<3>{
-        \begin{block}{Alvaro}
-            \begin{itemize}
-                \item First heard Jim's work "Using Z: : Specification, Refinement, and Proof" during his undergraduate degree, which inspired his interest in formal methods
-                \item Started his PhD study in Jim and Ana's group at York in 2008
-                \item Continue to work in the Circus and RoboStar groups
-                \item A lecturer in CS
-            \end{itemize}
-        \end{block}
-    }
+    % \only<2>{
+    %     \begin{block}{Frank}
+    %         \begin{itemize}
+    %             \item First met Jim at ZB 2002
+    %             \item Helped to organise the first  Unifying Theories of Programming (UTP) Symposium in 2006
+    %             \item Joined Jim and Ana's team at York in 2007 after his PhD
+    %             \item Now an independent researcher, living in Mexico 
+    %         \end{itemize}
+    %     \end{block}
+    % }
 
-    \only<4>{
-        \begin{block}{Pedro}
-            \begin{itemize}
-                \item First heard about UTP as an MEng student at York when attending Jim's lectures in 2010, which had a profound impact on his career
-                \item Started his PhD study in Angelic processes in 2011, supervised by Prof. Ana Cavalcanti
-                \item Continue to work in the Circus and RoboStar groups
-                \item A lecturer in CS
-            \end{itemize}
-        \end{block}
-    }
+    % \only<3>{
+    %     \begin{block}{Alvaro}
+    %         \begin{itemize}
+    %             \item First heard Jim's work "Using Z: : Specification, Refinement, and Proof" during his undergraduate degree, which inspired his interest in formal methods
+    %             \item Started his PhD study in Jim and Ana's group at York in 2008
+    %             \item Continue to work in the Circus and RoboStar groups
+    %             \item A lecturer in CS
+    %         \end{itemize}
+    %     \end{block}
+    % }
 
-    \only<5>{
-        \begin{block}{Kangfeng (Randall)}
-            \begin{itemize}
-                \item First met Jim at York in 2012 for his PhD study, supervised by Jim
-                \item First heard and learned Z, CSP, UTP etc. from Jim
-                \item Worked with Jim in one EU project and four EPSRC projects in probabilistic semantics for RoboChart
-                \item A research associate at York, working on formal verificaiton of security protocols  
-            \end{itemize}
-        \end{block}
-    }
+    % \only<4>{
+    %     \begin{block}{Pedro}
+    %         \begin{itemize}
+    %             \item First heard about UTP as an MEng student at York when attending Jim's lectures in 2010, which had a profound impact on his career
+    %             \item Started his PhD study in Angelic processes in 2011, supervised by Prof. Ana Cavalcanti
+    %             \item Continue to work in the Circus and RoboStar groups
+    %             \item A lecturer in CS
+    %         \end{itemize}
+    %     \end{block}
+    % }
+
+    % \only<5>{
+    %     \begin{block}{Kangfeng (Randall)}
+    %         \begin{itemize}
+    %             \item First met Jim at York in 2012 for his PhD study, supervised by Jim
+    %             \item First heard and learned Z, CSP, UTP etc. from Jim
+    %             \item Worked with Jim in one EU project and four EPSRC projects in probabilistic semantics for RoboChart
+    %             \item A research associate at York, working on formal verification of security protocols  
+    %         \end{itemize}
+    %     \end{block}
+    % }
 \end{frame}
 
 
@@ -253,8 +280,8 @@
 %        \end{frame}
 %    }
 
-\section{Motivations and overview}
-\begin{frame}{Motivations and overview}
+\section{Motivation and overview}
+\begin{frame}{Motivation and overview}
     % more compact and high-level diagram of Fig. 1
     % Applications: FMI, RoboChart
     \begin{columns}%
@@ -287,6 +314,8 @@
     \begin{block}{Probabilistic choice}
         $P \pchoice{r} Q$: resolved based on the probability $r$ to choose $P$ and $1-r$ to choice $Q$
     \end{block}
+    
+    \review{We could mention commutative property: Preferential choice is non-commutative and probabilistic choice is quasi-commutative.}
 \end{frame}
 
 \section{Nondeterministic choice}
@@ -333,35 +362,35 @@
 \section{Angelic choice}
 \begin{frame}{Angelic choice}
     \begin{itemize}
-        \item Earliest use of the term \emph{angelic} seems due to Broy and Wirsing~\cite{BroyW81}, who studied four types of nondeterminism via algebraic data types.
-        \item Hesselink considered extension of GCL with \emph{angelic} choice.
-        \item Dijkstra allowed arbitrary predicate transformers for reasoning about UNITY.
-        \item Back and von Wright studied sublattices where choice is \emph{angelic} or \emph{demonic}.
-        \item As observed by Rewitzky and Brink and others, relations can only capture one type of nondeterminism. Instead, can consider multirelations, i.e. $S \rel \power S$.
+        \pause \item Earliest use of the term \emph{angelic} seems due to Broy and Wirsing~\cite{BroyW81}, who studied four types of nondeterminism via algebraic data types.
+        \pause \item Hesselink considered extension of GCL with \emph{angelic} choice.
+        \pause \item Dijkstra allowed arbitrary predicate transformers for reasoning about UNITY.
+        \pause \item Back and von Wright studied sublattices where choice is \emph{angelic} or \emph{demonic}.
+        \pause \item As observed by Rewitzky and Brink and others, relations can only capture one type of nondeterminism. Instead, can consider multirelations, i.e. $S \rel \power S$.
         %\item UTP relations, designs, isomorphic to conjunctive monotonic predicate transformers.
-        \item Ribeiro and Cavalcanti~\cite{RibeiroC19} encoded binary multirelations in the UTP via non-homogeneous reactive designs to cater for angelic nondeterminism in CSP, where:
+        \pause \item Ribeiro and Cavalcanti~\cite{RibeiroC19} encoded binary multirelations in the UTP via non-homogeneous reactive designs to cater for angelic nondeterminism in CSP, where:
             \begin{itemize}
-                \item $a \then Skip \sqcup b \then \bot = a \then Skip \sqcup b \then Choice$
-                \item $a \then Skip \sqcup b \then \bot = a \then Skip$ (when preservation of trace history is relaxed)
+                \pause \item $a \then Skip \sqcup b \then \bot = a \then Skip \sqcup b \then Choice$
+                \pause \item $a \then Skip \sqcup b \then \bot = a \then Skip$ (when preservation of trace history is relaxed)
             \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Application of angelic choice}
     \begin{itemize}
-        \item Several applications in the literature, mainly in sequential programming: data refinement, proof tactics, constraint and logic programming, modelling games, conformance relations.
-        \item Co-simulation master algorithm in FMI: 
+        \pause \item Several applications in the literature, mainly in sequential programming: data refinement, proof tactics, constraint and logic programming, modelling games, conformance relations.
+        \pause \item Co-simulation master algorithm in FMI: 
             \begin{itemize}
-                \item FMUs may refuse to step their simulation by a given step size.
-                \item Master algorithm can backtrack the simulation by restoring FMU state and trying again.
-                \item Goal is to step through the simulation by the largest step accepted by all FMUs.
-                \item Paper sketches a \Circus~specification using \emph{angelic} and \emph{demonic} choices.
+                \pause \item FMUs may refuse to step their simulation by a given step size.
+                \pause \item Master algorithm can backtrack the simulation by restoring FMU state and trying again.
+                \pause \item Goal is to step through the simulation by the largest step accepted by all FMUs.
+                \pause \item Paper sketches a \Circus~specification using \emph{angelic} and \emph{demonic} choices.
             \end{itemize}
-        \item RoboChart:
+        \pause \item RoboChart:
             \begin{itemize}
-                \item The guards on transitions out of a junction must form a cover.
-                \item Such well-formedness condition may be inconvenient.
-                \item Alternatively could consider angelic choice over transitions out of a state. If a junction is reached where no guard is true backtracking would enable an alternative path to be taken.
+                \pause \item The guards on transitions out of a junction must form a cover.
+                \pause \item Such well-formedness condition may be inconvenient.
+                \pause \item Alternatively could consider angelic choice over transitions out of a state. If a junction is reached where no guard is true backtracking would enable an alternative path to be taken.
             \end{itemize}
     \end{itemize}
 \end{frame}
@@ -718,7 +747,7 @@
 \section{Conclusions}
 \begin{frame}{Conclusions}
     \begin{itemize}
-        \item 
+        \item Semantics of nondeterministic choice, angelic choice, 
     \end{itemize}
 \end{frame}
 
