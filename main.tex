@@ -315,7 +315,7 @@
         $P \pchoice{r} Q$: resolved based on the probability $r$ to choose $P$ and $1-r$ to choice $Q$
     \end{block}
     
-    \review{We could mention commutative property: Preferential choice is non-commutative and probabilistic choice is quasi-commutative.}
+    \note[item]<1>{We could mention commutative property: Preferential choice is non-commutative and probabilistic choice is quasi-commutative.}
 \end{frame}
 
 \section{Nondeterministic choice}
@@ -402,7 +402,7 @@
         \only<2->{\item Cannot be expressed in wp predicate transformers,}
         \only<3->{\item New prospective values (PV) semantics,} 
         \only<4->{\item Preference in wp: three-valued G\"{o}del logic~\cite{GoedelLogic} (false, true, supertrue), mechanised in Isabelle/HOL (wpe semantics of GCL), including angelic choice} 
-        \only<5->{\item Preference in UTP: future work} 
+        %\only<5->{\item Preference in UTP: future work} 
     \end{itemize}
 %
     \only<1>{
@@ -427,13 +427,12 @@
 
     \only<3>{
         \begin{block}{PV semantics}
-            Based on expression transformers~\cite{bGSL2023}: $\alert{S \diamond E}$ (prospective values of expression $E$ after the execution of $S$)\par
+            Based on expression transformers~\cite{bGSL2023,Stoddart2024}: $\alert{S \diamond E}$ (prospective values of expression $E$ after the execution of $S$)\par
             Defined on Hehner's bunch theory:
             \[ (S \pref T) \diamond E \deq (S \diamond E) \bunchcomma (S \diamond E) = \nullbunch \bguards T \diamond E \]
             With nondeterministic choice and probabilistic choice, but without angelic choice
-
-            \review{Why bunch theory? why no angelic choice?}
         \end{block}
+        \note[item]<3>{Why bunch theory? why no angelic choice?}
     }
 \end{frame}
 
@@ -484,7 +483,18 @@
     \only<4>{
     %\begin{block}{Probabilistic Unifying Relations (ProbURel)}
         \centering
-        \includegraphics[scale=0.18]{pics/ProbURel.png}
+        \includegraphics[scale=0.21]{pics/ProbURel.png}
+        %\begin{align*}
+        %    \pskip & \defs \rvprfunsym{\ibracket{\II}} \tag*{(skip)} \label{def:prog_skip} \\
+        %    \left(\passign{x}{e}\right) & \defs \rvprfunsym{\ibracket{x := e}} \tag*{(assignment)} \label{def:prog_assign} \\
+        %    \left(\ppchoice{r}{P}{Q}\right) & \defs \rvprfunsym{\usexpr{\prrvfunsym{r} * \prrvfunsym{P} + \left(\rfone - \prrvfunsym{r}\right) * \prrvfunsym{Q}}}\tag*{(probabilistic choice)} \label{def:prog_pchoice} \\ 
+        %    \left(\pcchoice{b}{P}{Q}\right)& \defs \rvprfunsym{\usexpr{\IF b \THEN \prrvfunsym{P} \ELSE \prrvfunsym{Q}}}\tag*{(conditional choice)} \label{def:prog_condchoice} \\ 
+        %    \pseq{P}{Q} & \defs \rvprfunsym{\usexpr{\infsum v_0 @ \prrvfunsym{P}[v_0/\vv'] * \prrvfunsym{Q}[v_0/\vv]}}\tag*{(sequential composition)} \label{def:prog_seq} \\ 
+        %    \pparallel{R}{T} & \defs \rvprfunsym{\normf \usexpr{R * T}}\tag*{(parallel composition)} \label{def:prog_parallel_ff} \\
+        %    \lfunbp(X) \defs \lfunp{b}{P}{X} & \defs~\pcchoice{b}{\left(\pseq{P}{X}\right)}{\pskip} \tag*{(loop characterisation function)} \label{def:lfun} \\
+        %    \pwhile{b}{P} &\defs \lfp~X @ \lfunbp(X) \tag*{(while loop by least fixed point)} \label{def:pwhile}\\
+        %    \pwhiletop{b}{P} &\defs \gfp~X @ \lfunbp(X) \tag*{(while loop by strongest fixed point)} \label{def:pwhile_top}
+        %\end{align*}
     %\end{block}
     }
 \end{frame}
@@ -498,7 +508,7 @@
             $\begin{aligned}
                 & CovidTest ::= Pos | Neg \\ 
                 & \isakwmaj{alphabet}\ cdstate = c::\bool \quad ct::CovidTest\\
-                &Init \defs \left(\ppchoice{p_1}{c := True}{c := False}\right) \\
+                &Init \defs \left(\ppchoice{p_1}{c := True}{c := False}\right) {\text{\alert{prior}}}\\
                 &TestAction \defs \pcchoice{c}
                 {(\ppchoice{p_2}{\passign{ct}{Pos}}{\passign{ct}{Neg}})}
                 {(\ppchoice{p_3}{\passign{ct}{Pos}}{\passign{ct}{Neg}})} \\
@@ -506,6 +516,12 @@
                 &SecondTestPos \defs \pparallel{\left(\pseq{FirstTestPos}{TestAction}\right)}{\ibracket{ct' = Pos}}
             \end{aligned}$
         \end{center}
+
+        Imperfect test: \alert{sensitivity} and \alert{specificity}
+
+       Do we need the 2nd test? How much can it contribute?
+
+       Provided $p_1=0.002$, $p_2=0.89$, and $p_3=0.05$, (38.84\% vs. 3.44\%)
     }
     \only<2->{
         Simple random walk
@@ -746,9 +762,26 @@
 
 \section{Conclusions}
 \begin{frame}{Conclusions}
+    \only<1>{
+    Nondeterministic choice, angelic choice, preferential choice, and probabilistic choice 
     \begin{itemize}
-        \item Semantics of nondeterministic choice, angelic choice, 
+        \item predicate transformers and relational semantics 
+        \item in the context of Jim's contributions in CSP, Circus, Z, and UTP
+        \item review related work for these choices in sequential and concurrent programming
+        \item their applications in FMI and RoboChart
     \end{itemize}
+    }
+
+    \only<2>{
+    Future work
+    \begin{itemize}
+        \item Mechanise angelic processes in Isabelle/UTP, explore its refinement laws, and extend with time
+        \item Operational semantics for nondeterministic, angelic, and probabilistic choice through Foster's interaction trees~\cite{FosterHW21} for sound animation  
+        \item Publish wpe semantics and its mechanisation for preferential choice in wp through three-value logic
+        \item Preferential choice in UTP 
+        \item Extend ProbURel to support nondeterminism and concurrency, and develop practical tool to approximate probabilistic loops in addition to theorem proving
+    \end{itemize}
+    }
 \end{frame}
 
 \begin{frame}[c]{ }
