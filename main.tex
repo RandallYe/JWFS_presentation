@@ -14,7 +14,7 @@
 %noamsthm
 ]{beamer}%
 %\documentclass[t,serif]{beamer}
-\setbeameroption{show notes}
+%\setbeameroption{show notes}
 %\setbeameroption{show only notes}
 
 %%%% Notes on the second screen
@@ -401,7 +401,7 @@
         \only<1->{\item Not commutative and non-monotonic in its first operand,}
         \only<2->{\item Cannot be expressed in wp predicate transformers,}
         \only<3->{\item Prospective values (PV) semantics~\cite{Stoddart2024},} 
-        \only<4->{\item Preference in wp \alert{\emph{is possible}} is adopting a three-valued G\"{o}del logic~\cite{GoedelLogic} (false, true, supertrue), mechanised in Isabelle/HOL (wpe semantics of GCL).
+        \only<4->{\item Preference in wp \alert{\emph{is possible}} by adopting a three-valued G\"{o}del logic~\cite{GoedelLogic} (false, true, supertrue), mechanised in Isabelle/HOL (wpe semantics of GCL).
         \begin{itemize}
           \item Such a theory also caters for angelic choice.
         \end{itemize}}
@@ -505,7 +505,7 @@
     \only<4>{
     %\begin{block}{Probabilistic Unifying Relations (ProbURel)}
         \centering
-        \includegraphics[scale=0.21]{pics/ProbURel.png}
+        \includegraphics[scale=0.23]{pics/ProbURel.png}
         %\begin{align*}
         %    \pskip & \defs \rvprfunsym{\ibracket{\II}} \tag*{(skip)} \label{def:prog_skip} \\
         %    \left(\passign{x}{e}\right) & \defs \rvprfunsym{\ibracket{x := e}} \tag*{(assignment)} \label{def:prog_assign} \\
@@ -623,20 +623,31 @@
                     \begin{align*}
                         \only<2>{&\cle \ibracket{\lnot x> 0}*\ibracket{x'=x}*\ibracket{t'=t}+ \\} 
                         \only<3->{&\ibracket{\lnot x> 0}*\ibracket{x'=x}*\ibracket{t'=t} + \\}
-                        &\ibracket{x > 0}*\ibracket{x'=0} * \\
+                        %
+                        \only<3>{&\cle \ibracket{x > 0}*\ibracket{x'=0} * \\
                         &\left(
                         \begin{array}[]{l}
                             \only<3>{\cle \ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\\
                                 \cle \quad\mu(x-1, t'-t-1)*p +\\} 
-                            \only<2,4->{\ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\\
-                                \quad\mu(x-1, t'-t-1)*p +\\} 
-                            \only<2-3,5->{\ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\\
-                                \quad\mu(x+1, t'-t-1)*q}
-                            \only<4>{\cle \ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\\
+                            \only<3>{\cle \ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\\
                                 \cle \quad\mu(x+1, t'-t-1)*q}
-                        \end{array}\right) \\
-                        \only<2-4>{&\mu(m, n) = p*\mu(m-1,n-1) + q*\mu(m+1,n-1)}
-                        \only<5>{&\cle \mu(m, n) = p*\mu(m-1,n-1) + q*\mu(m+1,n-1)}
+                        \end{array}\right) \\}
+                        %
+                        \only<2,4->{
+                        &\ibracket{x > 0}*\ibracket{x'=0} * \\
+                        &\left(
+                        \begin{array}[]{l}
+                            \only<4>{\cle \ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\\
+                                \cle \quad\mu(x-1, t'-t-1)*p +\\} 
+                            \only<2,5->{\ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\\
+                                \quad\mu(x-1, t'-t-1)*p +\\} 
+                            \only<2,4,6->{\ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\\
+                                \quad\mu(x+1, t'-t-1)*q}
+                            \only<5>{\cle \ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\\
+                                \cle \quad\mu(x+1, t'-t-1)*q}
+                        \end{array}\right) \\}
+                        \only<2-5>{&\mu(m, n) = p*\mu(m-1,n-1) + q*\mu(m+1,n-1)}
+                        \only<6>{&\cle \mu(m, n) = p*\mu(m-1,n-1) + q*\mu(m+1,n-1)}
                     \end{align*}
                 \end{column}
             \end{columns}
