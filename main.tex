@@ -14,7 +14,7 @@
 %noamsthm
 ]{beamer}%
 %\documentclass[t,serif]{beamer}
-%\setbeameroption{show notes}
+\setbeameroption{show notes}
 %\setbeameroption{show only notes}
 
 %%%% Notes on the second screen
@@ -414,6 +414,7 @@
             \end{align*}
         \end{block}
     }
+    \note[item]<1>{$(x = 1 \precond \gclskip)$ is preconditioned program, equal to $\gclskip$ if $x=1$, otherwise aborts (non-termination)}
 %
     \only<2>{
         \begin{block}{wp}
@@ -425,16 +426,23 @@
             %in wp, but $S \pref T$ cannot be expressed in wp
         \end{block}
     }
+    \note[item]<2>{$b \guards P$ is guarded program, equal to $P$ if $b$, otherwise miracle or \nullbunch}
 
     \only<3>{
         \begin{block}{PV semantics}
             Based on expression transformers~\cite{bGSL2023}: $\alert{S \diamond E}$ (prospective values of expression $E$ after the execution of $S$)\par
             Defined on Hehner's bunch theory:
             \[ (S \pref T) \diamond E \deq (S \diamond E) \bunchcomma (S \diamond E) = \nullbunch \bguards T \diamond E \]
+
             With nondeterministic choice and probabilistic choice, but without angelic choice
         \end{block}
-        \note[item]<3>{Why bunch theory? why no angelic choice?}
     }
+    \note[item]<3>{$\nullbunch$ - nothing, the contents in empty sets; $\bunchcomma$ - bunch union}
+    \note[item]<3>{$\improper$ - improper bunch}
+    \note[item]<3>{Why bunch theory? why no angelic choice?}
+    \note[item]<3>{Bunch theory solves undefined values, non-denoting terms, values for non-termination. $1/0 = \nullbunch$}
+    \note[item]<3>{Definite description: $\mu x @ P$ what if there is no unique x to make $P$ established}
+    \note[item]<3>{``Through use of bunches we have been able to capture interactions between probabilistic choice, non-deterministic choice, feasibility and aborting behaviour in the world of values.''~\cite{Stoddart2024}}
 \end{frame}
 
 \begin{frame}{Application of preferential choice}
