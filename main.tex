@@ -401,7 +401,10 @@
         \only<1->{\item Not commutative and non-monotonic in its first operand,}
         \only<2->{\item Cannot be expressed in wp predicate transformers,}
         \only<3->{\item Prospective values (PV) semantics~\cite{Stoddart2024},} 
-        \only<4->{\item Preference in wp: three-valued G\"{o}del logic~\cite{GoedelLogic} (false, true, supertrue), mechanised in Isabelle/HOL (wpe semantics of GCL), including angelic choice} 
+        \only<4->{\item Preference in wp \alert{\emph{is possible}} is adopting a three-valued G\"{o}del logic~\cite{GoedelLogic} (false, true, supertrue), mechanised in Isabelle/HOL (wpe semantics of GCL).
+        \begin{itemize}
+          \item Such a theory also caters for angelic choice.
+        \end{itemize}}
         %\only<5->{\item Preference in UTP: future work} 
     \end{itemize}
 %
@@ -418,20 +421,21 @@
 %
     \only<2>{
         \begin{block}{wp}
-            The closest one in wp is Nelson's biased choices~\cite{Nelson1989}: 
+            The closest in wp is Nelson's biased choices~\cite{Nelson1989}: 
             \[ S \biasedchoice T \deq S \choice \lnot \fis(S) \guards T \]
             but no continuation in biased choice. 
-            %Expect 
-            %\[\alert{S \choice T} \; \; \refby \; \; S \pref T \; \; \refby \; \; \alert{S \biasedchoice T}\] 
-            %in wp, but $S \pref T$ cannot be expressed in wp
+            The following law holds: 
+            \[ S \choice T \; \; \refby \; \; \alert{S \pref T} \; \; \refby \; \; S \biasedchoice T \]
+            in a suitable (non-wp) semantic theory.
         \end{block}
     }
     \note[item]<2>{$b \guards P$ is guarded program, equal to $P$ if $b$, otherwise miracle or \nullbunch}
-
+%
     \only<3>{
         \begin{block}{PV semantics}
-            Based on expression transformers~\cite{bGSL2023}: $\alert{S \diamond E}$ (prospective values of expression $E$ after the execution of $S$)\par
-            Defined on Hehner's bunch theory:
+            Based on expression transformers~\cite{bGSL2023}:
+            \[ \alert{S \diamond E} \quad \mbox{(prospective values of expression $E$ after the execution of $S$)} \]
+            Defined within Rick Hehner's bunch theory:
             \[ (S \pref T) \diamond E \deq (S \diamond E) \bunchcomma (S \diamond E) = \nullbunch \bguards T \diamond E \]
 
             With nondeterministic choice and probabilistic choice, but without angelic choice
