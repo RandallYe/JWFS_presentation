@@ -19,7 +19,7 @@
 
 %%%% Notes on the second screen
 %\usepackage{pgfpages}
-%\setbeameroption{show notes on second screen}
+\setbeameroption{show notes on second screen}
 
 \usepackage{main}
 \usepackage{fzeyda}
@@ -443,10 +443,11 @@
     }
     \note[item]<3>{$\nullbunch$ - nothing, the contents in empty sets; $\bunchcomma$ - bunch union}
     \note[item]<3>{$\improper$ - improper bunch}
-    \note[item]<3>{Why bunch theory? why no angelic choice?}
+    \note[item]<3>{Why bunch theory? wp is not appropriate to give a semantics to preference. Bunch theory, based on its mechanics, allows us just to do that, and in a fairly intuitive and straightforward manner. So, bunch theory has been a prime candidate for a semantic model of preference; wpe came later}
     \note[item]<3>{Bunch theory solves undefined values, non-denoting terms, values for non-termination. $1/0 = \nullbunch$}
     \note[item]<3>{Definite description: $\mu x @ P$ what if there is no unique x to make $P$ established}
     \note[item]<3>{``Through use of bunches we have been able to capture interactions between probabilistic choice, non-deterministic choice, feasibility and aborting behaviour in the world of values.''~\cite{Stoddart2024}}
+    \note[item]<4>{why no angelic choice? We played around with capturing angelic choice in our bunch-based pv semantics but realized that in order to do so, we require two different notions of bunch: demonic and angelic bunches of outcomes. The interplay between those is a point of complexity as well, including the underlying algebraic laws. My hunch is that it is possible but would require a more elaborate bunch theory with two different notions of a bunch that need to be syntactically delineated. (We already extended Rick Hehner’s original/classical bunch theory by included in improper bottom bunch to account for non-termination, so we did not want to add further complexity.) }
 \end{frame}
 
 \begin{frame}{Application of preferential choice}
