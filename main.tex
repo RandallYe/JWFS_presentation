@@ -400,7 +400,7 @@
     \begin{itemize}
         \only<1->{\item Not commutative and non-monotonic in its first operand,}
         \only<2->{\item Cannot be expressed in wp predicate transformers,}
-        \only<3->{\item New prospective values (PV) semantics,} 
+        \only<3->{\item Prospective values (PV) semantics~\cite{Stoddart2024},} 
         \only<4->{\item Preference in wp: three-valued G\"{o}del logic~\cite{GoedelLogic} (false, true, supertrue), mechanised in Isabelle/HOL (wpe semantics of GCL), including angelic choice} 
         %\only<5->{\item Preference in UTP: future work} 
     \end{itemize}
@@ -419,15 +419,16 @@
         \begin{block}{wp}
             The closest one in wp is Nelson's biased choices~\cite{Nelson1989}: 
             \[ S \biasedchoice T \deq S \choice \lnot \fis(S) \guards T \]
-            but no continuation in biased choice. Expect 
-            \[\alert{S \choice T} \; \; \refby \; \; S \pref T \; \; \refby \; \; \alert{S \biasedchoice T}\] 
-            in wp, but $S \pref T$ cannot be expressed in wp
+            but no continuation in biased choice. 
+            %Expect 
+            %\[\alert{S \choice T} \; \; \refby \; \; S \pref T \; \; \refby \; \; \alert{S \biasedchoice T}\] 
+            %in wp, but $S \pref T$ cannot be expressed in wp
         \end{block}
     }
 
     \only<3>{
         \begin{block}{PV semantics}
-            Based on expression transformers~\cite{bGSL2023,Stoddart2024}: $\alert{S \diamond E}$ (prospective values of expression $E$ after the execution of $S$)\par
+            Based on expression transformers~\cite{bGSL2023}: $\alert{S \diamond E}$ (prospective values of expression $E$ after the execution of $S$)\par
             Defined on Hehner's bunch theory:
             \[ (S \pref T) \diamond E \deq (S \diamond E) \bunchcomma (S \diamond E) = \nullbunch \bguards T \diamond E \]
             With nondeterministic choice and probabilistic choice, but without angelic choice
@@ -511,7 +512,7 @@
 \begin{frame}[fragile]
     \frametitle{Application of probabilistic choice}
     \only<1>{
-        Model epistemic and aleatoric uncertainty and theorem proving
+        Model epistemic and aleatoric uncertainty and theorem proving~\cite{Ye2023}
 
         \begin{center}
             $\begin{aligned}
@@ -534,6 +535,7 @@
     }
     \only<2->{
         Simple random walk
+        \only<2->{
         \begin{center}
             \begin{tikzpicture}[scale=1.2,every node/.style={scale=1.2}]
 
@@ -569,6 +571,7 @@
 
             \end{tikzpicture}
         \end{center}
+        }
 
         % \only<3>{%\Large
         %     %\begin{columns}
@@ -589,39 +592,58 @@
         %     %    \end{columns}
         % }
 
-        \only<3>{%\Large
+        \only<2->{%\Large
             \begin{columns}
-                \begin{column}{0.20\textwidth}
-                    \centering
-                    ProbURel
-                \end{column}
-                \begin{column}{0.80\textwidth}
+                \begin{column}{0.30\textwidth}
                     \vspace*{-2em}
+                    \centering
                     \begin{align*}
-                        P \defs \quad & x := m; t:=0; \\
+                        &x := m; t:=0; \\
                         &\text{while}(x > 0) \{\\
                             &\quad {\clz x := x - 1 \pchoice{p} x := x + 1 ; }\\
                             &\quad t:=t+1\\
                         &\} 
                     \end{align*}
                 \end{column}
+                \begin{column}{0.70\textwidth}
+                    %\centering
+                    \vspace*{-2em}
+                    \begin{align*}
+                        \only<2>{&\cle \ibracket{\lnot x> 0}*\ibracket{x'=x}*\ibracket{t'=t}+ \\} 
+                        \only<3->{&\ibracket{\lnot x> 0}*\ibracket{x'=x}*\ibracket{t'=t} + \\}
+                        &\ibracket{x > 0}*\ibracket{x'=0} * \\
+                        &\left(
+                        \begin{array}[]{l}
+                            \only<3>{\cle \ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\\
+                                \cle \quad\mu(x-1, t'-t-1)*p +\\} 
+                            \only<2,4->{\ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\\
+                                \quad\mu(x-1, t'-t-1)*p +\\} 
+                            \only<2-3,5->{\ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\\
+                                \quad\mu(x+1, t'-t-1)*q}
+                            \only<4>{\cle \ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\\
+                                \cle \quad\mu(x+1, t'-t-1)*q}
+                        \end{array}\right) \\
+                        \only<2-4>{&\mu(m, n) = p*\mu(m-1,n-1) + q*\mu(m+1,n-1)}
+                        \only<5>{&\cle \mu(m, n) = p*\mu(m-1,n-1) + q*\mu(m+1,n-1)}
+                    \end{align*}
+                \end{column}
             \end{columns}
         }
 
-        \only<4>{\large
-            %\vspace*{-1em}
-            ProbURel: semantics for the while loop
-            \begin{align*}
-                Ht \defs~ &\ibracket{\lnot x> 0}*\ibracket{x'=x}*\ibracket{t'=t} + \\
-                &\ibracket{x > 0}*\ibracket{x'=0} * \\
-                &\left(
-                \begin{array}[]{l}
-                    \ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\mu(x-1, t'-t-1)*p +\\ 
-                    \ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\mu(x+1, t'-t-1)*q
-                \end{array}\right) \\
-                \mu(m, n&) = p*\mu(m-1,n-1) + q*\mu(m+1,n-1) \\
-            \end{align*}
-        }
+        %\only<3>{\large
+        %    %\vspace*{-1em}
+        %    ProbURel: semantics for the while loop
+        %    \begin{align*}
+        %        Ht \defs~ &\ibracket{\lnot x> 0}*\ibracket{x'=x}*\ibracket{t'=t} + \\
+        %        &\ibracket{x > 0}*\ibracket{x'=0} * \\
+        %        &\left(
+        %        \begin{array}[]{l}
+        %            \ibracket{t'-t\geq x}*\ibracket{((t'-t)-x)\%2=0}*\mu(x-1, t'-t-1)*p +\\ 
+        %            \ibracket{t'-t\geq x+2}*\ibracket{((t'-t)-(x+2))\%2=0}*\mu(x+1, t'-t-1)*q
+        %        \end{array}\right) \\
+        %        \mu(m, n&) = p*\mu(m-1,n-1) + q*\mu(m+1,n-1) \\
+        %    \end{align*}
+        %}
     }
 \end{frame}
 % \begin{frame}{Probabilistic choice}
